@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpion-Csharp", "Morpion-Csharp\Morpion-Csharp.csproj", "{473E09D5-DF9C-453C-B702-EFC157C5D671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpion_métier", "Morpion_métier\Morpion_métier.csproj", "{83A4A618-6FA5-4533-8662-BC922BFB73A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpion_métier", "Morpion_métier\Morpion_métier.csproj", "{83A4A618-6FA5-4533-8662-BC922BFB73A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpion_testsUnitaires", "Morpion_testsUnitaires\Morpion_testsUnitaires.csproj", "{7B2398FA-F20A-4E75-BAF6-973F5F2CFB61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{83A4A618-6FA5-4533-8662-BC922BFB73A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83A4A618-6FA5-4533-8662-BC922BFB73A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83A4A618-6FA5-4533-8662-BC922BFB73A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2398FA-F20A-4E75-BAF6-973F5F2CFB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2398FA-F20A-4E75-BAF6-973F5F2CFB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2398FA-F20A-4E75-BAF6-973F5F2CFB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2398FA-F20A-4E75-BAF6-973F5F2CFB61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
