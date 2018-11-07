@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="700" Width="800">
+	<Grid>
+		<StackPanel x:Name="PanelJoueurs" HorizontalAlignment="Center" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" Orientation="Horizontal">
+			<Label Content="Joueur 1 : " VerticalAlignment="Center" Margin="0,37" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Width="120" VerticalAlignment="Center"/>
+			<Label Content="Joueur 2 : " VerticalAlignment="Center" Margin="0,37" Width="101" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Width="120" VerticalAlignment="Center"/>
+			<Button Content="Jouer !" Width="100" VerticalAlignment="Center" Margin="100,40,0,40" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+		</StackPanel>
+		<Grid x:Name="GrilleMorpion" HorizontalAlignment="Left" Height="544" Margin="10,115,0,0" VerticalAlignment="Top" Width="544"/>
+		<StackPanel x:Name="PanelActions" HorizontalAlignment="Left" Height="544" Margin="559,115,0,0" VerticalAlignment="Top" Width="223"/>
+
+	</Grid>
 </Window>
