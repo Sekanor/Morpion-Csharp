@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Morpion_Csharp
 {
-    class Class1
+    class Panel_Mouvements
     {
     }
 }
