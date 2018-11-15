@@ -5,7 +5,9 @@ namespace Morpion_métier
     public class Case
     {
 
-        // Correspond au joueur qui a marqué la case.
+        /* Correspond au joueur qui a marqué la case.
+         * null correspond à une case non marquée.
+         */
         private Joueur joueur;
         public Joueur Joueur
         {
@@ -27,5 +29,12 @@ namespace Morpion_métier
             this.joueur = j;
         }
 
+        // Permet de vérifier si le joueur est marqué.
+        public Joueur EstMarquee()
+        {
+            return this.joueur;
+        }
+
+        
     }
 }
