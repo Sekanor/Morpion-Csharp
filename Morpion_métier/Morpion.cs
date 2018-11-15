@@ -7,15 +7,31 @@ namespace Morpion_métier
     /* Représente un plateau de jeu */
     public class Morpion
     {
-        private List<Joueur> listeJoueurs; // Liste des joueurs 
-        private List<Case> cases; // Liste des cases
-        private Joueur joueurCourant; // Joueur dont c'est le tour
+        // Liste des joueurs
+        private List<Joueur> listeJoueurs;
+
+        // Liste des cases
+        private Case[,] cases;
+
+        // Joueur dont c'est le tour
+        private Joueur joueurCourant; 
 
         public Morpion()
         {
             this.listeJoueurs = new List<Joueur>();
-            this.cases = new List<Case>();
             this.joueurCourant = listeJoueurs[0];
+
+            // Initialisation du plateau
+            this.cases = new Case[3, 3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    this.cases[i, j] = new Case();
+                }
+            }
+            
+            
         }
 
         public void ajouterJoueur(Joueur j)
