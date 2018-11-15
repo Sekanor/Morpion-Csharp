@@ -16,6 +16,7 @@ namespace Morpion_métier
         // Joueur dont c'est le tour
         private Joueur joueurCourant; 
 
+        // Constructeur de la classe Morpion.
         public Morpion()
         {
             this.listeJoueurs = new List<Joueur>();
@@ -37,9 +38,58 @@ namespace Morpion_métier
             
         }
 
-        public void ajouterJoueur(Joueur j)
+        // Ajoute un joueur au morpion.
+        private void AjouterJoueur(Joueur j)
         {
             this.listeJoueurs.Add(j);
+        }
+
+        // Déroule une partie.
+        public void Partie()
+        {
+            Boolean partieEnCours = true;
+            Joueur vainqueur = null;
+
+            // Tour de jeu
+            do
+            {
+                // Sélection du joueur courant.
+                if (this.joueurCourant == null)
+                {
+                    this.joueurCourant = this.listeJoueurs[0];
+                }
+                else
+                {
+                    if (this.joueurCourant.Equals(this.listeJoueurs[0]))
+                    {
+                        this.joueurCourant = this.listeJoueurs[1];
+                    }
+                    else
+                    {
+                        this.joueurCourant = this.listeJoueurs[0];
+                    }
+                }
+
+                // On sélectionne une case, et on la marque.
+                this.cases[0, 1].Marquer(this.joueurCourant);
+
+                // On vérifie s'il y a un vainqueur de la partie.
+                vainqueur = this.VerifierVictoire();
+                
+                if (vainqueur != null)
+                {
+                    // Vainqueur trouvé : on arrête la partie.
+                    partieEnCours = false;
+                }
+                else
+                {
+                    // Aucun vainqueur : on vérifie si le plateau est rempli,
+                    // auquel cas on arrête la partie.
+                    partieEnCours = !this.VerifierPlateauRempli();
+                }
+
+            } while (partieEnCours);
+
         }
 
 
@@ -98,8 +148,10 @@ namespace Morpion_métier
             return joueurGagnant;
         }
 
-        // Cette méthode vérifie si la partie est nulle; donc, si le plateau est rempli.
-        public Boolean VerifierNulle()
+        /*
+         * Cette méthode vérifie si le plateau est rempli.
+         */
+        public Boolean VerifierPlateauRempli()
         {
             // Méthode a optimiser également.
 
