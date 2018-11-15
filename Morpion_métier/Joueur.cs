@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Morpion_métier
 {
-    class Joueur
+    public class Joueur
     {
         private String nom;
 

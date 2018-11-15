@@ -13,5 +13,10 @@ namespace Morpion_métier
             this.joueur = null;
         }
 
+        public void Marquer(Joueur j)
+        {
+            this.joueur = j;
+        }
+
     }
 }
