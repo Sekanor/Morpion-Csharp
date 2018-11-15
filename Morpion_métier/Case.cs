@@ -23,10 +23,20 @@ namespace Morpion_métier
             this.joueur = null;
         }
 
-        // Permet à un joueur de marquer la case.
-        public void Marquer(Joueur j)
+        /* Permet à un joueur de marquer la case.
+         * Renvoie true si le marquage a été correctement effectué.
+         * Si un joueur a déjà marqué la case auparavant, la méthode renvoie false.
+         */
+        public Boolean Marquer(Joueur j)
         {
-            this.joueur = j;
+            Boolean peutMarquer = this.EstMarquee() == null;
+
+            if (peutMarquer)
+            {
+                this.joueur = j;
+            }
+
+            return peutMarquer;
         }
 
         // Permet de vérifier si le joueur est marqué.
