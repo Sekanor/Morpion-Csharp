@@ -92,7 +92,6 @@ namespace Morpion_métier
 
         }
 
-
         /* 
          * Cette méthode vérifie s'il y a une victoire.
          * Dans le cas ou un joueur à gagné, la méthode renvoie ce joueur.

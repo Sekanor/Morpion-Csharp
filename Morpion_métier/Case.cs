@@ -29,7 +29,7 @@ namespace Morpion_métier
          */
         public Boolean Marquer(Joueur j)
         {
-            Boolean peutMarquer = this.EstMarquee() == null;
+            Boolean peutMarquer = (this.EstMarquee() == null);
 
             if (peutMarquer)
             {
