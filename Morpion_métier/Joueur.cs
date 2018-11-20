@@ -19,5 +19,13 @@ namespace Morpion_métier
         {
             this.nom = nom;
         }
+
+        public override bool Equals(object obj)
+        {
+            var joueur = obj as Joueur;
+            return joueur != null &&
+                   nom == joueur.nom &&
+                   Nom == joueur.Nom;
+        }
     }
 }
