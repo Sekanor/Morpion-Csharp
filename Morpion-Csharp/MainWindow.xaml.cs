@@ -43,7 +43,7 @@ namespace Morpion_Csharp
             {
                 morpion.Initialisation(J1, J2);
                 NettoyerPlateau();
-                MessageBox.Show("C'est parti ! Le joueur 1 commence.", "Partie lancée");
+                MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée");
             }
 
             // Si l'un des deux champs est vide, on affiche un message d'erreur
@@ -148,12 +148,12 @@ namespace Morpion_Csharp
         {
             if (morpion.Vainqueur == morpion.Joueur1)
             {
-                MessageBox.Show("Le Joueur 1 remporte la partie !", "Nous avons un vainqueur");
+                MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur");
                 NettoyerPlateau();
             }
             else if (morpion.Vainqueur == morpion.Joueur2)
             {
-                MessageBox.Show("Le Joueur 2 remporte la partie !", "Nous avons un vainqueur");
+                MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur");
                 NettoyerPlateau();
             }
         }
