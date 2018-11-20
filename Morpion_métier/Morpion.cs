@@ -55,6 +55,7 @@ namespace Morpion_métier
             // Initialisation des joueurs
             this.AjouterJoueur(new Joueur("Ange"));
             this.AjouterJoueur(new Joueur("Kévin"));
+            this.joueurCourant = this.Joueur1;
 
             this.plateauJeu = new Plateau(this);
             
@@ -78,7 +79,7 @@ namespace Morpion_métier
                 // Sélection du joueur courant.
                 if (this.joueurCourant == null)
                 {
-                    this.joueurCourant = this.Joueur1();
+                    this.joueurCourant = this.Joueur1;
                 }
                 else
                 {
