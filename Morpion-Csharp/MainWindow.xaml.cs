@@ -42,6 +42,7 @@ namespace Morpion_Csharp
             if (J1 != "" && J2 != "")
             {
                 morpion.Initialisation(J1, J2);
+                NettoyerPlateau();
                 MessageBox.Show("C'est parti ! Le joueur 1 commence.", "Partie lancée");
             }
 
