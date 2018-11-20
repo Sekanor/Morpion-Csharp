@@ -15,6 +15,13 @@ namespace Morpion_métier
 
         // Joueur dont c'est le tour
         private Joueur joueurCourant; 
+        public Joueur JoueurCourant
+        {
+            get
+            {
+                return this.joueurCourant;
+            }
+        }
 
         // Constructeur de la classe Morpion.
         public Morpion()
@@ -170,5 +177,6 @@ namespace Morpion_métier
 
             return plateauRempli;
         }
+
     }
 }
