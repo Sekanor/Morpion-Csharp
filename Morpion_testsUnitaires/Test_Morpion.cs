@@ -11,6 +11,8 @@ namespace Morpion_testsUnitaires
         public void TestConstructeur()
         {
             Morpion morpion = new Morpion();
+
+            
         }
 
         [TestMethod]

@@ -19,15 +19,23 @@ namespace Morpion_métier
 
         // Liste des joueurs
         private List<Joueur> listeJoueurs;
-        public Joueur Joueur1()
+        public Joueur Joueur1
         {
-            return this.listeJoueurs[0];
+            get
+            {
+                return this.listeJoueurs[0];
+            }
+            
         }
-        public Joueur Joueur2()
+        public Joueur Joueur2
         {
-            return this.listeJoueurs[1];
+            get
+            {
+                return this.listeJoueurs[1];
+            }
+
         }
-        
+
         // Joueur dont c'est le tour
         private Joueur joueurCourant; 
         public Joueur JoueurCourant
