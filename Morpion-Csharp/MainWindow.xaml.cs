@@ -29,6 +29,30 @@ namespace Morpion_Csharp
             morpion = new Morpion();
         }
 
+
+        /// <summary>
+        /// Action effectuée lorsque l'utilisateur clique sur le bouton Jouer.
+        /// </summary>
+        private void BoutonJouer_Click(object sender, RoutedEventArgs e)
+        {
+            String J1 = textBoxJoueur1.Text;
+            String J2 = textBoxJoueur2.Text;
+
+            // Si les champs Joueur1 et Joueur2 ne sont pas vides, on lance la partie
+            if (J1 != "" && J2 != "")
+            {
+                morpion.Initialisation(J1, J2);
+                MessageBox.Show("C'est parti ! Le joueur 1 commence.", "Partie lancée");
+            }
+
+            // Si l'un des deux champs est vide, on affiche un message d'erreur
+            else
+            {
+                MessageBox.Show("Veuillez indiquer le nom des deux joueurs avant de lancer une partie.", "Erreur de saisie");
+            }
+        }
+
+
         /// <summary>
         /// Action effectuée quand une case détecte le clic d'un joueur.
         /// </summary>
