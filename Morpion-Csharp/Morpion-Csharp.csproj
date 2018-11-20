@@ -94,7 +94,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Morpion_métier\Morpion_métier.csproj">
+      <Project>{83a4a618-6fa5-4533-8662-bc922bfb73a4}</Project>
+      <Name>Morpion_métier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Images\j0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
