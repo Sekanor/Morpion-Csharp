@@ -29,6 +29,9 @@ namespace Morpion_Csharp
             morpion = new Morpion();
         }
 
+        /// <summary>
+        /// Action effectuée quand une case détecte le clic d'un joueur.
+        /// </summary>
         private void Img_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image img = sender as Image;
@@ -39,6 +42,7 @@ namespace Morpion_Csharp
             {
                 marque = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
                 img.Source = marque;
+                marquerCase(img.Name);
             }
 
             // Si la case est déjà marquée, on affiche un message d'erreur
@@ -47,5 +51,47 @@ namespace Morpion_Csharp
                 MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici");
             }
         }
+
+
+        /// <summary>
+        /// Marque la case logique associée à l'image dont le nom est passé en paramètre.
+        /// </summary>
+        /// <param name="imgName">Nom de l'image dont on doit marquer la case logique correspondante.</param>
+        private void marquerCase(String imgName)
+        {
+            switch (imgName)
+            {
+                case "imgTL":
+                    morpion.Tour(0, 0);
+                    break;
+                case "imgTC":
+                    morpion.Tour(1, 0);
+                    break;
+                case "imgTR":
+                    morpion.Tour(2, 0);
+                    break;
+
+                case "imgML":
+                    morpion.Tour(0, 1);
+                    break;
+                case "imgMC":
+                    morpion.Tour(1, 1);
+                    break;
+                case "imgMR":
+                    morpion.Tour(2, 1);
+                    break;
+
+                case "imgBL":
+                    morpion.Tour(0, 2);
+                    break;
+                case "imgBC":
+                    morpion.Tour(1, 2);
+                    break;
+                case "imgBR":
+                    morpion.Tour(2, 2);
+                    break;
+            }
+        }
+
     }
 }
