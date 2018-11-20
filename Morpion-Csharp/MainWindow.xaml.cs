@@ -134,7 +134,26 @@ namespace Morpion_Csharp
                     morpion.Tour(2, 2);
                     break;
             }
+
+            // On regarde si, suite à ce tour, la partie a un vainqueur
+            VerifierVictoire();
         }
 
+
+        /// <summary>
+        /// Vérifie si un des deux joueurs est victorieux
+        /// </summary>
+        private void VerifierVictoire()
+        {
+
+            if (morpion.Vainqueur == morpion.Joueur1)
+            {
+                MessageBox.Show("Le Joueur 1 remporte la partie !", "Nous avons un vainqueur");
+            }
+            else if (morpion.Vainqueur == morpion.Joueur2)
+            {
+                MessageBox.Show("Le Joueur 2 remporte la partie !", "Nous avons un vainqueur");
+            }
+        }
     }
 }
