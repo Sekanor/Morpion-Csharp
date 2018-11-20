@@ -6,8 +6,13 @@ namespace Morpion_métier
 {
     public class Joueur
     {
+
+        // Identifiant du joueur
+        private int id;
         // Nom du joueur.
         private String nom;
+
+
         public String Nom
         {
             get
@@ -21,9 +26,10 @@ namespace Morpion_métier
         }
 
         // Constructeur de la classe Joueur.
-        public Joueur(String nom)
+        public Joueur(int id)
         {
-            this.nom = nom;
+            this.id = id;
+            this.nom = "";
         }
 
         // Méthode permettant de vérifier si deux joueurs sont égaux.
@@ -31,8 +37,8 @@ namespace Morpion_métier
         {
             var joueur = obj as Joueur;
             return joueur != null &&
-                   nom == joueur.nom &&
-                   Nom == joueur.Nom;
+                   id == joueur.id &&
+                   id == joueur.id;
         }
 
         public override int GetHashCode()

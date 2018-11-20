@@ -70,10 +70,8 @@ namespace Morpion_métier
             this.listeJoueurs = new List<Joueur>();
 
             // Initialisation des joueurs
-            this.listeJoueurs.Add(new Joueur(""));
-            this.listeJoueurs.Add(new Joueur(""));
-            
-            this.Initialisation("Joueur1", "Joueur2");
+            this.listeJoueurs.Add(new Joueur(1));
+            this.listeJoueurs.Add(new Joueur(2));
         }
 
         // Initialise le déroulement d'une partie.
