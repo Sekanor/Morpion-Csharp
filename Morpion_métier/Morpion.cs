@@ -10,12 +10,12 @@ namespace Morpion_métier
         // Liste des joueurs
         private List<Joueur> listeJoueurs;
 
-        public Joueur getJoueur1()
+        public Joueur GetJoueur1()
         {
             return this.listeJoueurs[0];
         }
 
-        public Joueur getJoueur2()
+        public Joueur GetJoueur2()
         {
             return this.listeJoueurs[1];
         }
