@@ -59,21 +59,40 @@ namespace Morpion_Csharp
         private void Img_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image img = sender as Image;
-            BitmapImage marque;
+            BitmapImage marque = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
 
-            // On vérifie que la case ne soit pas déjà marquée
-            if (img.Source.ToString() == "pack://application:,,,/Morpion-Csharp;component/Images/j0.png")
+            // Si une partie de Morpion est en cours
+            if (morpion.EnJeu)
             {
-                marque = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
-                img.Source = marque;
-                marquerCase(img.Name);
+                // On vérifie que la case ne soit pas déjà marquée
+                if (img.Source.ToString() == "pack://application:,,,/Morpion-Csharp;component/Images/j0.png")
+                {
+                    if (morpion.JoueurCourant.Equals(morpion.Joueur1))
+                    {
+                        marque = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
+                    }
+                    else if (morpion.JoueurCourant.Equals(morpion.Joueur2))
+                    {
+                        marque = new BitmapImage(new Uri("Images/j2.png", UriKind.Relative));
+                    }
+
+                    img.Source = marque; // Marquage visuel de la case (on remplace l'image)
+                    marquerCase(img.Name); // Marquage logique de l'image
+                }
+
+                // Si la case est déjà marquée, on affiche un message d'erreur
+                else
+                {
+                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici");
+                }
             }
 
-            // Si la case est déjà marquée, on affiche un message d'erreur
+            // Si aucune partie n'est lancée, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici");
+                MessageBox.Show("Aucune partie lancée", "Veillez à lancer une partie en appuyant sur le bouton Jouer.");
             }
+
         }
 
 
