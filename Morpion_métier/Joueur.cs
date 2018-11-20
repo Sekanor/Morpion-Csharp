@@ -13,6 +13,10 @@ namespace Morpion_métier
             {
                 return this.nom;
             }
+            set
+            {
+                this.nom = value;
+            }
         }
 
         public Joueur(String nom)

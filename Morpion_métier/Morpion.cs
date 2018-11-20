@@ -4,9 +4,18 @@ using System.Text;
 
 namespace Morpion_métier
 {
-    /* Représente un plateau de jeu */
     public class Morpion
     {
+        // Booléen représentant si la partie est en cours ou non.
+        private Boolean enJeu;
+        public Boolean EnJeu
+        {
+            get
+            {
+                return this.enJeu;
+            }
+        }
+
         // Plateau de jeu
         private Plateau plateauJeu;
         public Plateau PlateauJeu
@@ -17,7 +26,7 @@ namespace Morpion_métier
             }
         }
 
-        // Liste des joueurs
+        // Liste des joueurs, accesseurs pour Joueur1 et Joueur2
         private List<Joueur> listeJoueurs;
         public Joueur Joueur1
         {
@@ -35,6 +44,13 @@ namespace Morpion_métier
             }
 
         }
+        public Joueur Vainqueur
+        {
+            get
+            {
+                return this.PlateauJeu.VerifierVictoire(this.listeJoueurs);
+            }
+        }
 
         // Joueur dont c'est le tour
         private Joueur joueurCourant; 
@@ -50,71 +66,71 @@ namespace Morpion_métier
         // Constructeur de la classe Morpion.
         public Morpion()
         {
+            this.plateauJeu = new Plateau(this);
             this.listeJoueurs = new List<Joueur>();
 
             // Initialisation des joueurs
-            this.AjouterJoueur(new Joueur("Ange"));
-            this.AjouterJoueur(new Joueur("Kévin"));
+            this.AjouterJoueur(new Joueur("Joueur1"));
+            this.AjouterJoueur(new Joueur("Joueur2"));
             this.joueurCourant = this.Joueur1;
 
-            this.plateauJeu = new Plateau(this);
-            
+            this.Initialisation("Joueur1", "Joueur2");
         }
 
-        // Ajoute un joueur au morpion.
+        // Initialise le déroulement d'une partie.
+        public void Initialisation(string nomJoueur1, string nomJoueur2)
+        {
+            this.enJeu = true;
+            this.Joueur1.Nom = nomJoueur1;
+            this.Joueur2.Nom = nomJoueur2;
+        }
+
+        // Tour de jeu
+        public void Tour(int x, int y)
+        {
+            if (this.enJeu)
+            {
+                Console.Write(this.PlateauJeu.GetCase(x, y));
+
+                // On marque le plateau.
+                if (this.PlateauJeu.GetCase(x, y).Marquer(this.JoueurCourant))
+                {
+                    // On vérifie s'il y a un vainqueur de la partie.
+                    Joueur vainqueur = this.PlateauJeu.VerifierVictoire(this.listeJoueurs);
+
+                    if (vainqueur != null)
+                    {
+                        // Vainqueur trouvé : on arrête la partie.
+                        this.enJeu = false;
+                    }
+                    else
+                    {
+                        // Aucun vainqueur : on vérifie si le plateau est rempli,
+                        // auquel cas on arrête la partie.
+                        this.enJeu = !this.PlateauJeu.VerifierPlateauRempli();
+                    }
+
+                    if (this.enJeu)
+                    {
+                        // Changement du joueur courant.
+                        if (this.joueurCourant.Equals(this.Joueur1))
+                        {
+                            this.joueurCourant = Joueur2;
+                        }
+                        else
+                        {
+                            this.joueurCourant = Joueur1;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Ajoute un joueur au morpion. Voir si l'implémentation de la liste respecte SOLID.
         private void AjouterJoueur(Joueur j)
         {
             this.listeJoueurs.Add(j);
         }
-
-        // Déroule une partie.
-        private void Partie()
-        {
-            Boolean partieEnCours = true;
-            Joueur vainqueur = null;
-
-            // Tour de jeu
-            do
-            {
-                // Sélection du joueur courant.
-                if (this.joueurCourant == null)
-                {
-                    this.joueurCourant = this.Joueur1;
-                }
-                else
-                {
-                    if (this.joueurCourant.Equals(this.listeJoueurs[0]))
-                    {
-                        this.joueurCourant = this.listeJoueurs[1];
-                    }
-                    else
-                    {
-                        this.joueurCourant = this.listeJoueurs[0];
-                    }
-                }
-
-                // On sélectionne une case, et on la marque.
-                this.PlateauJeu.GetCase(1, 1).Marquer(this.JoueurCourant);
-
-                // On vérifie s'il y a un vainqueur de la partie.
-                vainqueur = this.PlateauJeu.VerifierVictoire(this.listeJoueurs);
-                
-                if (vainqueur != null)
-                {
-                    // Vainqueur trouvé : on arrête la partie.
-                    partieEnCours = false;
-                }
-                else
-                {
-                    // Aucun vainqueur : on vérifie si le plateau est rempli,
-                    // auquel cas on arrête la partie.
-                    partieEnCours = !this.PlateauJeu.VerifierPlateauRempli();
-                }
-
-            } while (partieEnCours);
-
-        }
- 
 
     }
 }

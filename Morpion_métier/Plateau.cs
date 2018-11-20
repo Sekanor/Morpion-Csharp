@@ -25,10 +25,17 @@ namespace Morpion_métier
             }
         }
 
+        // Retourne une case du plateau.
         public Case GetCase(int x, int y)
         {
-            // A améliorer
-            return this.cases[x, y];
+            Case res = null;
+            if (x >= 0 && x <= 2 && y >= 0 && y <= 2)
+            {
+                // A améliorer
+                res = this.cases[x, y];
+            }
+
+            return res;
         }
 
 

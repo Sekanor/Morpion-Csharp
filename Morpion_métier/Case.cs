@@ -39,7 +39,7 @@ namespace Morpion_métier
             return peutMarquer;
         }
 
-        // Permet de vérifier si le joueur est marqué.
+        // Permet de vérifier si un joueur a marqué cette case.
         public Joueur EstMarquee()
         {
             return this.joueur;
