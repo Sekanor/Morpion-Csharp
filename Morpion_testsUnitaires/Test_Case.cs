@@ -26,9 +26,6 @@ namespace Morpion_testsUnitaires
             aBienMarque = c.Marquer(j2);
             Assert.AreEqual(j1, c.EstMarquee());
             Assert.AreEqual(false, aBienMarque);
-
-
-
         }
     }
 }
