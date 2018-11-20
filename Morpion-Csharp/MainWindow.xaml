@@ -14,7 +14,7 @@
 			<TextBox x:Name="textBoxJoueur2" TextWrapping="Wrap" Width="120" VerticalAlignment="Center"/>
 			<Button x:Name="boutonJouer" Content="Jouer !" Width="100" VerticalAlignment="Center" Margin="100,40,0,40" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Click="BoutonJouer_Click"/>
 		</StackPanel>
-		<Grid x:Name="GrilleMorpion" HorizontalAlignment="Left" Height="544" Margin="10,115,0,0" VerticalAlignment="Top" Width="544">
+		<Grid x:Name="grillePlateau" HorizontalAlignment="Left" Height="544" Margin="10,115,0,0" VerticalAlignment="Top" Width="544">
 			<Image x:Name="imgTL" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
 			<Image x:Name="imgTC" HorizontalAlignment="Left" Height="100" Margin="115,10,0,0" VerticalAlignment="Top" Width="100" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
 			<Image x:Name="imgTR" HorizontalAlignment="Left" Height="100" Margin="220,10,0,0" VerticalAlignment="Top" Width="100" Source="Images/j0.png" MouseDown="Img_MouseDown"/>

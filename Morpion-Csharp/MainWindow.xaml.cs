@@ -145,14 +145,27 @@ namespace Morpion_Csharp
         /// </summary>
         private void VerifierVictoire()
         {
-
             if (morpion.Vainqueur == morpion.Joueur1)
             {
                 MessageBox.Show("Le Joueur 1 remporte la partie !", "Nous avons un vainqueur");
+                NettoyerPlateau();
             }
             else if (morpion.Vainqueur == morpion.Joueur2)
             {
                 MessageBox.Show("Le Joueur 2 remporte la partie !", "Nous avons un vainqueur");
+                NettoyerPlateau();
+            }
+        }
+
+
+        /// <summary>
+        /// Réinitialise les images du plateau
+        /// </summary>
+        private void NettoyerPlateau()
+        {
+            foreach (Image img in grillePlateau.Children)
+            {
+                img.Source = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
             }
         }
     }
