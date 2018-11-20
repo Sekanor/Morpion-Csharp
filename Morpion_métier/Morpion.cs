@@ -10,6 +10,16 @@ namespace Morpion_métier
         // Liste des joueurs
         private List<Joueur> listeJoueurs;
 
+        public Joueur getJoueur1()
+        {
+            return this.listeJoueurs[0];
+        }
+
+        public Joueur getJoueur2()
+        {
+            return this.listeJoueurs[1];
+        }
+
         // Liste des cases
         private Case[,] cases;
 
@@ -177,6 +187,8 @@ namespace Morpion_métier
 
             return plateauRempli;
         }
+
+ 
 
     }
 }
