@@ -6,6 +6,7 @@ namespace Morpion_métier
 {
     public class Joueur
     {
+        // Nom du joueur.
         private String nom;
         public String Nom
         {
@@ -19,11 +20,13 @@ namespace Morpion_métier
             }
         }
 
+        // Constructeur de la classe Joueur.
         public Joueur(String nom)
         {
             this.nom = nom;
         }
 
+        // Méthode permettant de vérifier si deux joueurs sont égaux.
         public override bool Equals(object obj)
         {
             var joueur = obj as Joueur;

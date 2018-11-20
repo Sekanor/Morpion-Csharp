@@ -10,6 +10,7 @@ namespace Morpion_métier
         private Case[,] cases;
         private Morpion morpion;
 
+        // Constructeur de la classe Plateau.
         public Plateau(Morpion m)
         {
             this.morpion = m;
@@ -21,6 +22,18 @@ namespace Morpion_métier
                 for (int j = 0; j < 3; j++)
                 {
                     this.cases[i, j] = new Case();
+                }
+            }
+        }
+
+        // Ré-initialisation du plateau à un état vide. Annule tous les marquages.
+        public void Reinitialiser()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    this.cases[i, j].Marquer(null);
                 }
             }
         }
@@ -37,7 +50,6 @@ namespace Morpion_métier
 
             return res;
         }
-
 
         /* 
          * Cette méthode vérifie s'il y a une victoire.

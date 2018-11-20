@@ -70,10 +70,9 @@ namespace Morpion_métier
             this.listeJoueurs = new List<Joueur>();
 
             // Initialisation des joueurs
-            this.AjouterJoueur(new Joueur("Joueur1"));
-            this.AjouterJoueur(new Joueur("Joueur2"));
-            this.joueurCourant = this.Joueur1;
-
+            this.listeJoueurs.Add(new Joueur(""));
+            this.listeJoueurs.Add(new Joueur(""));
+            
             this.Initialisation("Joueur1", "Joueur2");
         }
 
@@ -83,6 +82,8 @@ namespace Morpion_métier
             this.enJeu = true;
             this.Joueur1.Nom = nomJoueur1;
             this.Joueur2.Nom = nomJoueur2;
+            this.joueurCourant = this.Joueur1;
+            this.PlateauJeu.Reinitialiser();
         }
 
         // Tour de jeu
@@ -124,12 +125,6 @@ namespace Morpion_métier
                     }
                 }
             }
-        }
-
-        // Ajoute un joueur au morpion. Voir si l'implémentation de la liste respecte SOLID.
-        private void AjouterJoueur(Joueur j)
-        {
-            this.listeJoueurs.Add(j);
         }
 
     }
