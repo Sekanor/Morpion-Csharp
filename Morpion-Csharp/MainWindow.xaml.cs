@@ -41,12 +41,24 @@ namespace Morpion_Csharp
             // Si les champs Joueur1 et Joueur2 ne sont pas vides, on lance la partie
             if (J1 != "" && J2 != "")
             {
-                morpion.Initialisation(J1, J2);
-                NettoyerPlateau();
-                listeActions.Items.Clear();
-                listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
-                MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée");
+                // Si les deux joueurs n'ont pas le même nom
+                if (J1 != J2)
+                {
+                    morpion.Initialisation(J1, J2);
+                    NettoyerPlateau(); // Nettoyage du plateau
+                    listeActions.Items.Clear(); // Nettoyage de l'historique des actions
+                    listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
+                    MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée");
+                }
+                
+                // Si les deux joueurs ont le même nom, on affiche un message d'erreur
+                else
+                {
+                    MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie");
+                }
             }
+
+
 
             // Si l'un des deux champs est vide, on affiche un message d'erreur
             else
