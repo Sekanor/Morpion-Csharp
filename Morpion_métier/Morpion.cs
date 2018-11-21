@@ -4,10 +4,14 @@ using System.Text;
 
 namespace Morpion_métier
 {
-    // Gère le morpion, fait le lien entre tous les éléments du jeu.
+    /// <summary>
+    /// Gère le morpion, fait le lien entre tous les éléments du jeu.
+    /// </summary>
     public class Morpion
     {
-        // Booléen représentant si la partie est en cours ou non.
+        /// <summary>
+        /// Booléen représentant si la partie est en cours ou non.
+        /// </summary>
         private Boolean enJeu;
         public Boolean EnJeu
         {
@@ -17,7 +21,9 @@ namespace Morpion_métier
             }
         }
 
-        // Plateau de jeu
+        /// <summary>
+        /// Plateau de jeu
+        /// </summary>
         private Plateau plateauJeu;
         public Plateau PlateauJeu
         {
@@ -27,7 +33,9 @@ namespace Morpion_métier
             }
         }
 
-        // Liste des joueurs, accesseurs pour Joueur1 et Joueur2
+        /// <summary>
+        /// Liste des joueurs, accesseurs pour Joueur1 et Joueur2
+        /// </summary>
         private List<Joueur> listeJoueurs;
         public Joueur Joueur1
         {
@@ -53,7 +61,9 @@ namespace Morpion_métier
             }
         }
 
-        // Joueur dont c'est le tour
+        /// <summary>
+        /// Joueur dont c'est le tour
+        /// </summary>
         private Joueur joueurCourant; 
         public Joueur JoueurCourant
         {
@@ -64,7 +74,9 @@ namespace Morpion_métier
         }
 
 
-        // Constructeur de la classe Morpion.
+        /// <summary>
+        /// Constructeur de la classe Morpion.
+        /// </summary>
         public Morpion()
         {
             this.plateauJeu = new Plateau(this);
@@ -75,7 +87,11 @@ namespace Morpion_métier
             this.listeJoueurs.Add(new Joueur(2));
         }
 
-        // Initialise le déroulement d'une partie.
+        /// <summary>
+        /// Initialise le déroulement d'une partie.
+        /// </summary>
+        /// <param name="nomJoueur1">Nom du premier joueur.</param>
+        /// <param name="nomJoueur2">Nom du deuxième joueur.</param>
         public void Initialisation(string nomJoueur1, string nomJoueur2)
         {
             this.enJeu = true;
@@ -85,7 +101,11 @@ namespace Morpion_métier
             this.PlateauJeu.Reinitialiser();
         }
 
-        // Tour de jeu
+        /// <summary>
+        /// Tour de jeu
+        /// </summary>
+        /// <param name="x">Coordonnée x de la case.</param>
+        /// <param name="y">Coordonnée y de la case.</param>
         public void Tour(int x, int y)
         {
             if (this.enJeu)

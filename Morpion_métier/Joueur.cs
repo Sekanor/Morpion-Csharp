@@ -7,10 +7,14 @@ namespace Morpion_métier
     public class Joueur
     {
 
-        // Identifiant du joueur
+        /// <summary>
+        /// Identifiant du joueur
+        /// </summary>
         private int id;
 
-        // Nom du joueur.
+        /// <summary>
+        /// Nom du joueur.
+        /// </summary>
         private String nom;
         public String Nom
         {
@@ -24,14 +28,21 @@ namespace Morpion_métier
             }
         }
 
-        // Constructeur de la classe Joueur.
+        /// <summary>
+        /// Constructeur de la classe Joueur.
+        /// </summary>
+        /// <param name="id">Identifiant unique du joueur.</param>
         public Joueur(int id)
         {
             this.id = id;
             this.nom = "";
         }
 
-        // Méthode permettant de vérifier si deux joueurs sont égaux.
+        /// <summary>
+        /// Méthode permettant de vérifier si deux joueurs sont égaux.
+        /// </summary>
+        /// <param name="obj">Objet comparé au joueur.</param>
+        /// <returns>Retourne true si les deux joueurs sont égaux.</returns>
         public override bool Equals(object obj)
         {
             var joueur = obj as Joueur;

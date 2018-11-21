@@ -6,11 +6,20 @@ namespace Morpion_métier
 {
     public class Plateau
     {
-        // Liste des cases
+        /// <summary>
+        /// Liste des cases
+        /// </summary>
         private Case[,] cases;
+
+        /// <summary>
+        /// Instance du morpion auquel appartient le plateau.
+        /// </summary>
         private Morpion morpion;
 
-        // Constructeur de la classe Plateau.
+        /// <summary>
+        /// Constructeur de la classe Plateau.
+        /// </summary>
+        /// <param name="m"></param>
         public Plateau(Morpion m)
         {
             this.morpion = m;
@@ -26,7 +35,9 @@ namespace Morpion_métier
             }
         }
 
-        // Ré-initialisation du plateau à un état vide. Annule tous les marquages.
+        /// <summary>
+        /// Ré-initialisation du plateau à un état vide. Annule tous les marquages.
+        /// </summary>
         public void Reinitialiser()
         {
             for (int i = 0; i < 3; i++)
@@ -38,8 +49,13 @@ namespace Morpion_métier
             }
         }
 
-        // Retourne une case du plateau.
-        // Si la case n'existe pas, la méthode retourne null.
+        /// <summary>
+        ///  Retourne une case du plateau.
+        ///  Si la case n'existe pas, la méthode retourne null.
+        /// </summary>
+        /// <param name="x">Coordonnée x de la case.</param>
+        /// <param name="y">Coordonnée y de la case.</param>
+        /// <returns>Retourne la case correspondant aux coordonnées.</returns>
         public Case GetCase(int x, int y)
         {
             Case res = null;
@@ -52,11 +68,13 @@ namespace Morpion_métier
             return res;
         }
 
-        /* 
-         * Cette méthode vérifie s'il y a une victoire.
-         * Dans le cas ou un joueur à gagné, la méthode renvoie ce joueur.
-         * Si aucun joueur n'a gagné, la méthode renvoie null.
-         */
+        /// <summary>
+        /// Cette méthode vérifie s'il y a une victoire.
+        /// Dans le cas ou un joueur à gagné, la méthode renvoie ce joueur.
+        /// Si aucun joueur n'a gagné, la méthode renvoie null.
+        /// </summary>
+        /// <param name="list">Liste des joueurs, utilisée pour simplifier la vérification de victoire.</param>
+        /// <returns>Retourne le joueur ayant gagné la partie, et null s'il n'y en a pas.</returns>
         public Joueur VerifierVictoire(List<Joueur> list)
         {
             // Le code de cette méthode peut être optimisé, revenir dessus si le projet est terminé.
@@ -107,9 +125,10 @@ namespace Morpion_métier
             return joueurGagnant;
         }
 
-        /*
-         * Cette méthode vérifie si le plateau est rempli.
-         */
+        /// <summary>
+        /// Cette méthode vérifie si le plateau est rempli.
+        /// </summary>
+        /// <returns>Retourne true si le plateau est rempli.</returns>
         public Boolean VerifierPlateauRempli()
         {
             // Méthode a optimiser également.
@@ -131,7 +150,5 @@ namespace Morpion_métier
 
             return plateauRempli;
         }
-
-
     }
 }
