@@ -26,6 +26,13 @@
 			<Image x:Name="imgBR" HorizontalAlignment="Left" Height="100" Margin="220,220,0,0" VerticalAlignment="Top" Width="100" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
 		</Grid>
 		<StackPanel x:Name="PanelActions" HorizontalAlignment="Left" Height="544" Margin="559,115,0,0" VerticalAlignment="Top" Width="223">
+			<ListView x:Name="listeActions">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn Header="Historique des Actions"/>
+					</GridView>
+				</ListView.View>
+			</ListView>
 		</StackPanel>
 
 	</Grid>

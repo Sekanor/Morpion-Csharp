@@ -43,6 +43,8 @@ namespace Morpion_Csharp
             {
                 morpion.Initialisation(J1, J2);
                 NettoyerPlateau();
+                listeActions.Items.Clear();
+                listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
                 MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée");
             }
 
@@ -91,7 +93,7 @@ namespace Morpion_Csharp
             // Si aucune partie n'est lancée, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Aucune partie lancée", "Veillez à lancer une partie en appuyant sur le bouton Jouer.");
+                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée");
             }
 
         }
@@ -103,38 +105,51 @@ namespace Morpion_Csharp
         /// <param name="imgName">Nom de l'image dont on doit marquer la case logique correspondante.</param>
         private void marquerCase(String imgName)
         {
+            String nomCase = "";
+
             switch (imgName)
             {
                 case "imgTL":
                     morpion.Tour(0, 0);
+                    nomCase = "A1";
                     break;
                 case "imgTC":
                     morpion.Tour(1, 0);
+                    nomCase = "B1";
                     break;
                 case "imgTR":
                     morpion.Tour(2, 0);
+                    nomCase = "C1";
                     break;
 
                 case "imgML":
                     morpion.Tour(0, 1);
+                    nomCase = "A2";
                     break;
                 case "imgMC":
                     morpion.Tour(1, 1);
+                    nomCase = "B2";
                     break;
                 case "imgMR":
                     morpion.Tour(2, 1);
+                    nomCase = "C2";
                     break;
 
                 case "imgBL":
                     morpion.Tour(0, 2);
+                    nomCase = "A3";
                     break;
                 case "imgBC":
                     morpion.Tour(1, 2);
+                    nomCase = "B3";
                     break;
                 case "imgBR":
                     morpion.Tour(2, 2);
+                    nomCase = "C3";
                     break;
             }
+
+            listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + nomCase);
 
             // On regarde si, suite à ce tour, la partie a un vainqueur
             VerifierVictoire();
@@ -148,11 +163,13 @@ namespace Morpion_Csharp
         {
             if (morpion.Vainqueur == morpion.Joueur1)
             {
+                listeActions.Items.Add(morpion.Joueur1.Nom + " remporte la partie !");
                 MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur");
                 NettoyerPlateau();
             }
             else if (morpion.Vainqueur == morpion.Joueur2)
             {
+                listeActions.Items.Add(morpion.Joueur2.Nom + " remporte la partie !");
                 MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur");
                 NettoyerPlateau();
             }
