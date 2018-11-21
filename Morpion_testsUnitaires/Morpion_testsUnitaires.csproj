@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test_Joueur.cs" />
     <Compile Include="Test_Morpion.cs" />
+    <Compile Include="Test_Plateau.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

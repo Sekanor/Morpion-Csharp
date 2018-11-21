@@ -39,6 +39,7 @@ namespace Morpion_métier
         }
 
         // Retourne une case du plateau.
+        // Si la case n'existe pas, la méthode retourne null.
         public Case GetCase(int x, int y)
         {
             Case res = null;
