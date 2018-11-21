@@ -157,20 +157,31 @@ namespace Morpion_Csharp
 
 
         /// <summary>
-        /// Vérifie si un des deux joueurs est victorieux
+        /// Vérifie si un des deux joueurs est victorieux, ou s'il y a match nul
         /// </summary>
         private void VerifierVictoire()
         {
+            // Le joueur 1 remporte la partie
             if (morpion.Vainqueur == morpion.Joueur1)
             {
                 listeActions.Items.Add(morpion.Joueur1.Nom + " remporte la partie !");
                 MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur");
                 NettoyerPlateau();
             }
+
+            // Le joueur 2 remporte la partie
             else if (morpion.Vainqueur == morpion.Joueur2)
             {
                 listeActions.Items.Add(morpion.Joueur2.Nom + " remporte la partie !");
                 MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur");
+                NettoyerPlateau();
+            }
+
+            // Match nul
+            else if (morpion.PlateauJeu.VerifierPlateauRempli())
+            {
+                listeActions.Items.Add("Match nul !");
+                MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.");
                 NettoyerPlateau();
             }
         }
