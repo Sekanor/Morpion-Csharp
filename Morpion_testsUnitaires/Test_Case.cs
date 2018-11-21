@@ -11,8 +11,8 @@ namespace Morpion_testsUnitaires
         public void Test_Marquer()
         {
             Case c = new Case();
-            Joueur j1 = new Joueur("Test_1");
-            Joueur j2 = new Joueur("Test_2");
+            Joueur j1 = new Joueur(1);
+            Joueur j2 = new Joueur(2);
 
             // On vérifie si la case n'est pas marquée quand elle est initialisée.
             Assert.AreEqual(null, c.EstMarquee());

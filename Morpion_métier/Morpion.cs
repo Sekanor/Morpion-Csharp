@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Morpion_métier
 {
+    // Gère le morpion, fait le lien entre tous les éléments du jeu.
     public class Morpion
     {
         // Booléen représentant si la partie est en cours ou non.
@@ -89,8 +90,6 @@ namespace Morpion_métier
         {
             if (this.enJeu)
             {
-                Console.Write(this.PlateauJeu.GetCase(x, y));
-
                 // On marque le plateau.
                 if (this.PlateauJeu.GetCase(x, y).Marquer(this.JoueurCourant))
                 {

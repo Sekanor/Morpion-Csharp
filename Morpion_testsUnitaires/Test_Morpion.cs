@@ -11,14 +11,17 @@ namespace Morpion_testsUnitaires
         public void TestConstructeur()
         {
             Morpion morpion = new Morpion();
-
-            
         }
 
         [TestMethod]
         public void TestPartie()
         {
             Morpion morpion = new Morpion();
+            morpion.Initialisation("Joueur1", "Joueur2");
+
+            // Vérification si le joueur courant est correctement défini.
+            Assert.AreEqual(morpion.Joueur1, morpion.JoueurCourant);
+
             morpion.Tour(0, 0);
             morpion.Tour(0, 1);
 

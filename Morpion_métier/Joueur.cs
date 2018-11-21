@@ -9,10 +9,9 @@ namespace Morpion_métier
 
         // Identifiant du joueur
         private int id;
+
         // Nom du joueur.
         private String nom;
-
-
         public String Nom
         {
             get

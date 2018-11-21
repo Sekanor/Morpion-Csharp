@@ -44,7 +44,5 @@ namespace Morpion_métier
         {
             return this.joueur;
         }
-
-        
     }
 }

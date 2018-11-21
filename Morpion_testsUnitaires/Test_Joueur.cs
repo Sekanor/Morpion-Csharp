@@ -10,8 +10,7 @@ namespace Morpion_testsUnitaires
         [TestMethod]
         public void TestConstructeur()
         {
-            Joueur joueur = new Joueur("Michel");
-            Assert.AreEqual("Michel", joueur.Nom);
+            
         }
     }
 }
