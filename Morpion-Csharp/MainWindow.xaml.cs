@@ -48,13 +48,13 @@ namespace Morpion_Csharp
                     NettoyerPlateau(); // Nettoyage du plateau
                     listeActions.Items.Clear(); // Nettoyage de l'historique des actions
                     listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
-                    MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée");
+                    MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 
                 // Si les deux joueurs ont le même nom, on affiche un message d'erreur
                 else
                 {
-                    MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie");
+                    MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
@@ -63,7 +63,7 @@ namespace Morpion_Csharp
             // Si l'un des deux champs est vide, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Veuillez indiquer le nom des deux joueurs avant de lancer une partie.", "Erreur de saisie");
+                MessageBox.Show("Veuillez indiquer le nom des deux joueurs avant de lancer une partie.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -98,14 +98,14 @@ namespace Morpion_Csharp
                 // Si la case est déjà marquée, on affiche un message d'erreur
                 else
                 {
-                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici");
+                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
             // Si aucune partie n'est lancée, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée");
+                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -177,7 +177,7 @@ namespace Morpion_Csharp
             if (morpion.Vainqueur == morpion.Joueur1)
             {
                 listeActions.Items.Add(morpion.Joueur1.Nom + " remporte la partie !");
-                MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur");
+                MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
                 NettoyerPlateau();
             }
 
@@ -185,7 +185,7 @@ namespace Morpion_Csharp
             else if (morpion.Vainqueur == morpion.Joueur2)
             {
                 listeActions.Items.Add(morpion.Joueur2.Nom + " remporte la partie !");
-                MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur");
+                MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
                 NettoyerPlateau();
             }
 
@@ -193,7 +193,7 @@ namespace Morpion_Csharp
             else if (morpion.PlateauJeu.VerifierPlateauRempli())
             {
                 listeActions.Items.Add("Match nul !");
-                MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.");
+                MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.", MessageBoxButton.OK, MessageBoxImage.Information);
                 NettoyerPlateau();
             }
         }
