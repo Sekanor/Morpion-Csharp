@@ -47,6 +47,7 @@ namespace Morpion_métier
 
         /// <summary>
         /// Permet de vérifier si un joueur a marqué cette case.
+        /// Si la case n'a pas été marquée, la méthode retourne null.
         /// </summary>
         /// <returns>Retourne le joueur ayant marqué la case, et null si aucun.</returns>
         public Joueur EstMarquee()

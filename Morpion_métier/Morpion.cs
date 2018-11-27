@@ -73,7 +73,6 @@ namespace Morpion_métier
             }
         }
 
-
         /// <summary>
         /// Constructeur de la classe Morpion.
         /// </summary>

@@ -10,9 +10,32 @@ namespace Morpion_métier
     public class IA_Evoluee : IA
     {
 
-        public void Jouer(Plateau p)
+        public void Jouer(PlateauRestreint p)
         {
 
+        }
+
+        public Case MeilleureCase()
+        {
+            //List<Case> casePossibles;
+
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// 1 si la position est gagnante,
+        /// 0 si on ne sait pas,
+        /// -1 si la position est perdante.
+        /// Implémentation de l'algorithme Minimax pour évaluer les positions.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public int Evaluation(PlateauRestreint p)
+        {
+            
+
+            return 0;
         }
 
     }

@@ -10,7 +10,7 @@ namespace Morpion_métier
         /// <summary>
         /// Méthode permettant à l'IA de jouer un tour.
         /// </summary>
-        void Jouer(Plateau p); 
+        void Jouer(PlateauRestreint p); 
 
     }
 }
