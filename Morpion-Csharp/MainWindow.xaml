@@ -35,9 +35,9 @@
 			</Grid.RowDefinitions>
 			<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Content="Type de partie : " VerticalAlignment="Center"/>
-				<RadioButton Content="Joueur VS Joueur" Margin="10,0" VerticalAlignment="Center"/>
-				<RadioButton Content="Joueur VS I.A. simple" Margin="10,0" VerticalAlignment="Center"/>
-				<RadioButton Content="Joueur VS I.A. complexe" Margin="10,0" VerticalAlignment="Center"/>
+				<RadioButton x:Name="radioJoueur" Content="Joueur VS Joueur" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
+				<RadioButton x:Name="radioSimple" Content="Joueur VS I.A. simple" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
+				<RadioButton x:Name="radioComplexe" Content="Joueur VS I.A. complexe" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
 			</StackPanel>
 			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
 				<Label Content="Joueur 1 :" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -50,7 +50,7 @@
 		<ListView x:Name="listeActions" Margin="0,135,10,10" HorizontalAlignment="Right" Width="323">
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Width="130">
+					<GridViewColumn Width="323">
 						<GridViewColumnHeader>Historique des action</GridViewColumnHeader>
 					</GridViewColumn>
 				</GridView>
