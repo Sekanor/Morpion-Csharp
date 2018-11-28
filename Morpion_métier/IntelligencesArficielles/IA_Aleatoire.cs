@@ -10,7 +10,12 @@ namespace Morpion_métier
     public class IA_Aleatoire : IA
     {
 
-        public void Jouer(PlateauRestreint plateau)
+        public IA_Aleatoire(PlateauRestreint p) : base(p)
+        {
+
+        }
+
+        public override Position Jouer()
         {
 
             List<Case> casesLibres = new List<Case>();
@@ -21,9 +26,9 @@ namespace Morpion_métier
             {
                 for (int caseY = 0; caseY < 3; caseY++)
                 {
-                    if (plateau.GetCase(caseX, caseY).EstMarquee() == null)
+                    if (this.Plateau.GetCase(caseX, caseY).EstMarquee() == null)
                     {
-                        casesLibres[i] = plateau.GetCase(caseX, caseY);
+                        casesLibres[i] = this.Plateau.GetCase(caseX, caseY);
                         i++;
                     }
                 }
@@ -34,6 +39,8 @@ namespace Morpion_métier
 
             // On prend le premier index de cette liste, qui sera la case jouée.
             Case caseJouee = casesLibres[0];
+
+            return null;
 
         }
 

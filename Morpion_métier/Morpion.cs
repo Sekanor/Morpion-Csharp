@@ -34,6 +34,18 @@ namespace Morpion_métier
         }
 
         /// <summary>
+        /// Plateau de jeu en lecture seule, transféré aux IAs.
+        /// </summary>
+        private PlateauRestreint plateauRestreint;
+        public PlateauRestreint PlateauRestreint
+        {
+            get
+            {
+                return this.plateauRestreint;
+            }
+        }
+
+        /// <summary>
         /// Liste des joueurs, accesseurs pour Joueur1 et Joueur2
         /// </summary>
         private List<Joueur> listeJoueurs;
@@ -79,6 +91,7 @@ namespace Morpion_métier
         public Morpion()
         {
             this.plateauJeu = new Plateau(this);
+            this.plateauRestreint = new PlateauRestreint(this.plateauJeu);
             this.listeJoueurs = new List<Joueur>();
 
             // Initialisation des joueurs

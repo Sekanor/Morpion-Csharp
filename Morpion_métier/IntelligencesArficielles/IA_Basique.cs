@@ -10,18 +10,29 @@ namespace Morpion_métier
     public class IA_Basique : IA
     {
 
-        public void Jouer(PlateauRestreint plateau)
+        public IA_Basique(PlateauRestreint p) : base(p)
+        {
+
+        }
+
+        public override Position Jouer()
         {
             bool plateauRempli = false;
-            Case caseTrouvee = null;
+            bool caseTrouvee = false;
             int x = 0;
             int y = 0;
 
+            // -1 car la position doit être invalide par défaut. A modifier ?
+            int xFinal = -1;
+            int yFinal = -1;
+
             do
             {
-                if (plateau.GetCase(x,y).EstMarquee() == null)
+                if (this.Plateau.GetCase(x,y).EstMarquee() == null)
                 {
-                    caseTrouvee = plateau.GetCase(x, y);
+                    caseTrouvee = true;
+                    xFinal = x;
+                    yFinal = y;
                 }
                 else
                 {
@@ -38,7 +49,11 @@ namespace Morpion_métier
                     }
                 }
 
-            } while ((caseTrouvee == null) && !plateauRempli);
+            } while (!caseTrouvee && !plateauRempli);
+
+            Position pos = new Position(xFinal, yFinal);
+
+            return pos;
         }
 
     }

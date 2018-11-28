@@ -10,9 +10,14 @@ namespace Morpion_métier
     public class IA_Evoluee : IA
     {
 
-        public void Jouer(PlateauRestreint p)
+        public IA_Evoluee(PlateauRestreint p) : base(p)
         {
 
+        }
+
+        public override Position Jouer()
+        {
+            return null;
         }
 
         public Case MeilleureCase()
