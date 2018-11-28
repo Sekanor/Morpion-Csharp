@@ -55,6 +55,7 @@
     <Compile Include="Test_Morpion.cs" />
     <Compile Include="Test_Plateau.cs" />
     <Compile Include="Test_IA_Basique.cs" />
+    <Compile Include="Test_IA_Aleatoire.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

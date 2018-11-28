@@ -35,5 +35,29 @@ namespace Morpion_métier
             return plateau.GetCase(x, y);
         }
 
+        public Joueur Joueur1
+        {
+            get
+            {
+                return plateau.MorpionJeu.Joueur1;
+            }
+        }
+
+        public Joueur Joueur2
+        {
+            get
+            {
+                return plateau.MorpionJeu.Joueur2;
+            }
+        }
+
+        public Joueur JoueurCourant
+        {
+            get
+            {
+                return plateau.MorpionJeu.JoueurCourant;
+            }
+        }
+
     }
 }

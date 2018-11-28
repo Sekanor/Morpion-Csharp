@@ -15,6 +15,13 @@ namespace Morpion_métier
         /// Instance du morpion auquel appartient le plateau.
         /// </summary>
         private Morpion morpion;
+        public Morpion MorpionJeu
+        {
+            get
+            {
+                return this.morpion;
+            }
+        }
 
         /// <summary>
         /// Constructeur de la classe Plateau.

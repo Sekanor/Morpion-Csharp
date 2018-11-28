@@ -18,7 +18,7 @@ namespace Morpion_métier
         public override Position Jouer()
         {
 
-            List<Case> casesLibres = new List<Case>();
+            List<Position> positionsLibres = new List<Position>();
             int i = 0;
             
             // On stocke toutes les cases libres dans un array.
@@ -28,19 +28,19 @@ namespace Morpion_métier
                 {
                     if (this.Plateau.GetCase(caseX, caseY).EstMarquee() == null)
                     {
-                        casesLibres[i] = this.Plateau.GetCase(caseX, caseY);
+                        positionsLibres[i] = new Position(caseX, caseY);
                         i++;
                     }
                 }
             }
 
             // On mélange cette liste.
-            this.Shuffle(casesLibres);
+            this.Shuffle(positionsLibres);
 
             // On prend le premier index de cette liste, qui sera la case jouée.
-            Case caseJouee = casesLibres[0];
+            Position positionJouee = positionsLibres[0];
 
-            return null;
+            return positionJouee;
 
         }
 
