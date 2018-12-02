@@ -25,14 +25,15 @@ namespace Morpion_métier
 
         public override Position Jouer()
         {
-            bool aJoue = false;
+            // Code TRES factorisable
+
             Position pos = null;
 
             // 1. Si l'IA joue en premier, elle joue au centre.
             Boolean estVide = true;
             for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
                     estVide = estVide && (this.Plateau.GetCase(i, j).EstMarquee() == null);
                 }
@@ -81,26 +82,128 @@ namespace Morpion_métier
                 // Lignes
                 for(int i = 0; i < 3; i++)
                 {
-                    for (int j = 0; i < 2; i++)
+                    // On veut que adversaire = 2 et nonJouee = 1.
+                    int adversaire = 0;
+                    int nonJouee = 0;
+                    Position posNonJouee = null;
+
+                    for (int j = 0; j < 3; j++)
                     {
-                        
+                        if (CaseAdversaire(i,j))
+                        {
+                            adversaire++;
+                        }
+                        if (CaseNonJouee(i,j))
+                        {
+                            nonJouee++;
+                            posNonJouee = new Position(i, j);
+                        }
+
+                        if (adversaire == 2 && nonJouee == 1)
+                        {
+                            pos = posNonJouee;
+                        }
                     }
                 }
 
                 // Colonnes
+                for (int i = 0; i < 3; i++)
+                {
+                    // On veut que adversaire = 2 et nonJouee = 1.
+                    int adversaire = 0;
+                    int nonJouee = 0;
+                    Position posNonJouee = null;
 
-                // Quatre diagonales
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (CaseAdversaire(j, i))
+                        {
+                            adversaire++;
+                        }
+                        if (CaseNonJouee(j, i))
+                        {
+                            nonJouee++;
+                            posNonJouee = new Position(j, i);
+                        }
 
+                        if (adversaire == 2 && nonJouee == 1)
+                        {
+                            pos = posNonJouee;
+                        }
+                    }
+                }
+
+                // TL-BR
+                for (int i = 0; i < 3; i++)
+                {
+                    // On veut que adversaire = 2 et nonJouee = 1.
+                    int adversaire = 0;
+                    int nonJouee = 0;
+                    Position posNonJouee = null;
+
+                    if (CaseAdversaire(i, i))
+                    {
+                        adversaire++;
+                    }
+                    if (CaseNonJouee(i, i))
+                    {
+                        nonJouee++;
+                        posNonJouee = new Position(i, i);
+                    }
+                    if (adversaire == 2 && nonJouee == 1)
+                    {
+                        pos = posNonJouee;
+                    }
+                }
+
+                // BL-TR
+                for (int i = 0; i < 3; i++)
+                {
+                    // On veut que adversaire = 2 et nonJouee = 1.
+                    int adversaire = 0;
+                    int nonJouee = 0;
+                    Position posNonJouee = null;
+
+                    if (CaseAdversaire(2-i, i))
+                    {
+                        adversaire++;
+                    }
+                    if (CaseNonJouee(2-i, i))
+                    {
+                        nonJouee++;
+                        posNonJouee = new Position(2-i, i);
+                    }
+                    if (adversaire == 2 && nonJouee == 1)
+                    {
+                        pos = posNonJouee;
+                    }
+                }
 
             }
 
             // 4. Si l'IA ne sait pas quoi jouer, elle joue aléatoirement.
             if (pos == null)
             {
-
+                IA_Aleatoire rand = new IA_Aleatoire(this.Plateau);
+                pos = rand.Jouer();
             }
 
             return pos;
+        }
+
+        public bool CaseAdversaire(int x, int y)
+        {
+            return this.Plateau.GetCase(x, y).EstMarquee() != null && this.Plateau.GetCase(x, y).EstMarquee() != this.Plateau.JoueurCourant;
+        }
+
+        public bool CaseAlliee(int x, int y)
+        {
+            return this.Plateau.GetCase(x, y).EstMarquee() == this.Plateau.JoueurCourant;
+        }
+
+        public bool CaseNonJouee(int x, int y)
+        {
+            return this.Plateau.GetCase(x, y).EstMarquee() == null;
         }
 
         

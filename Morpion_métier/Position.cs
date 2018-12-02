@@ -46,5 +46,11 @@ namespace Morpion_métier
                    x == position.x &&
                    y == position.y;
         }
+
+        public override string ToString()
+        {
+
+            return "("+X+" , "+Y+")";
+        }
     }
 }

@@ -19,7 +19,6 @@ namespace Morpion_métier
         {
 
             List<Position> positionsLibres = new List<Position>();
-            int i = 0;
             
             // On stocke toutes les cases libres dans un array.
             for (int caseX = 0; caseX < 3; caseX++)
@@ -28,8 +27,7 @@ namespace Morpion_métier
                 {
                     if (this.Plateau.GetCase(caseX, caseY).EstMarquee() == null)
                     {
-                        positionsLibres[i] = new Position(caseX, caseY);
-                        i++;
+                        positionsLibres.Add(new Position(caseX, caseY));
                     }
                 }
             }

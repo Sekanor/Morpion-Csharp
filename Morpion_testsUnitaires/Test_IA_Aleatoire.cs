@@ -15,12 +15,20 @@ namespace Morpion_testsUnitaires
             // Nous pouvons seulement nous approcher de ce nombre.
 
             Morpion morpion = new Morpion();
-            morpion.Initialisation("IA_Aleatoire", "Joueur1");
+            morpion.Initialisation("IA_1", "IA_2");
 
             IA_Aleatoire ia = new IA_Aleatoire(morpion.PlateauRestreint);
+            Position pos;
 
-            
+            morpion.PlateauJeu.Afficher();
 
+
+            for (int i = 0; i < 9; i++)
+            {
+                pos = ia.Jouer();
+                morpion.Tour(pos.X, pos.Y);
+                morpion.PlateauJeu.Afficher();
+            }
         }
     }
 }

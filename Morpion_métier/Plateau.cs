@@ -157,5 +157,32 @@ namespace Morpion_métier
 
             return plateauRempli;
         }
+
+        /// <summary>
+        /// Permet d'afficher le plateau avec la console.
+        /// Fonction utile pour débuguer des erreurs dans les tests unitaires.
+        /// </summary>
+        public void Afficher()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    // Ecriture
+                    String c = "- ";
+
+                    if (this.cases[j, i].EstMarquee() == this.MorpionJeu.Joueur1) c = "X";
+                    else if (this.cases[j, i].EstMarquee() == this.MorpionJeu.Joueur2) c = "O";
+
+                    Console.Write(c + " ");
+
+                    if (j == 2)
+                    {
+                        Console.Write("\n");
+                    }
+                }
+            }
+            Console.Write("\n");
+        }
     }
 }
