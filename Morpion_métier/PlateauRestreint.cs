@@ -35,6 +35,9 @@ namespace Morpion_métier
             return plateau.GetCase(x, y);
         }
 
+        /// <summary>
+        /// Retourne le joueur 1 de la partie.
+        /// </summary>
         public Joueur Joueur1
         {
             get
@@ -43,6 +46,9 @@ namespace Morpion_métier
             }
         }
 
+        /// <summary>
+        /// Retourne le joueur 2 de la partie.
+        /// </summary>
         public Joueur Joueur2
         {
             get
@@ -51,6 +57,9 @@ namespace Morpion_métier
             }
         }
 
+        /// <summary>
+        /// Retourne le joueur courant du tour.
+        /// </summary>
         public Joueur JoueurCourant
         {
             get

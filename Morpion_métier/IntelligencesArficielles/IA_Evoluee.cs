@@ -191,46 +191,5 @@ namespace Morpion_métier
             return pos;
         }
 
-        public bool CaseAdversaire(int x, int y)
-        {
-            return this.Plateau.GetCase(x, y).EstMarquee() != null && this.Plateau.GetCase(x, y).EstMarquee() != this.Plateau.JoueurCourant;
-        }
-
-        public bool CaseAlliee(int x, int y)
-        {
-            return this.Plateau.GetCase(x, y).EstMarquee() == this.Plateau.JoueurCourant;
-        }
-
-        public bool CaseNonJouee(int x, int y)
-        {
-            return this.Plateau.GetCase(x, y).EstMarquee() == null;
-        }
-
-        
-
-
-        public Case MeilleureCase()
-        {
-            //List<Case> casePossibles;
-
-            return null;
-        }
-
-        /// <summary>
-        /// 
-        /// 1 si la position est gagnante,
-        /// 0 si on ne sait pas,
-        /// -1 si la position est perdante.
-        /// Implémentation de l'algorithme Minimax pour évaluer les positions.
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        public int Evaluation(PlateauRestreint p)
-        {
-            
-
-            return 0;
-        }
-
     }
 }
