@@ -102,7 +102,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (p.GetCase(i, j).EstMarquee() == null)
+                    if (p.GetCase(i, j).Joueur == null)
                     {
                         positionsLibres.Add(new Position(i, j));
                     }

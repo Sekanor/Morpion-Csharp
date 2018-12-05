@@ -20,20 +20,20 @@ namespace Morpion_métier
         {
             this.plateau = p;
         }
-
+        
         public bool CaseAdversaire(int x, int y)
         {
-            return this.Plateau.GetCase(x, y).EstMarquee() != null && this.Plateau.GetCase(x, y).EstMarquee() != this.Plateau.JoueurCourant;
+            return this.Plateau.GetCase(x, y).Joueur != null && this.Plateau.GetCase(x, y).Joueur != this.Plateau.JoueurCourant;
         }
 
         public bool CaseAlliee(int x, int y)
         {
-            return this.Plateau.GetCase(x, y).EstMarquee() == this.Plateau.JoueurCourant;
+            return this.Plateau.GetCase(x, y).Joueur == this.Plateau.JoueurCourant;
         }
 
         public bool CaseNonJouee(int x, int y)
         {
-            return this.Plateau.GetCase(x, y).EstMarquee() == null;
+            return this.Plateau.GetCase(x, y).Joueur == null;
         }
 
         /// <summary>

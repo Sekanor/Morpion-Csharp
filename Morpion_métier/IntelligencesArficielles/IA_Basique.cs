@@ -28,7 +28,7 @@ namespace Morpion_métier
 
             do
             {
-                if (this.Plateau.GetCase(x,y).EstMarquee() == null)
+                if (this.Plateau.GetCase(x,y).Joueur == null)
                 {
                     caseTrouvee = true;
                     xFinal = x;

@@ -16,7 +16,7 @@ namespace Morpion_testsUnitaires
             // On vérifie si la case que l'on a obtenue par p.GetCase() a bien été marquée.
             Joueur jCourant = m.JoueurCourant;
             m.Tour(1, 2);
-            Assert.AreEqual(jCourant, m.PlateauJeu.GetCase(1, 2).EstMarquee());
+            Assert.AreEqual(jCourant, m.PlateauJeu.GetCase(1, 2).Joueur);
 
             // On vérifie si getCase() renvoie bien null si on lui demande une case de plateau qui n'existe pas.
             Assert.AreEqual(null, m.PlateauJeu.GetCase(3, 5));
@@ -39,7 +39,7 @@ namespace Morpion_testsUnitaires
             {
                 for (int j = 0; i < 3; i++)
                 {
-                    estVide = estVide && (m.PlateauJeu.GetCase(i, j).EstMarquee() == null);
+                    estVide = estVide && (m.PlateauJeu.GetCase(i, j).Joueur == null);
                 }
             }
             Assert.AreEqual(true, estVide);

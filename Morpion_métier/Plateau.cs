@@ -10,6 +10,13 @@ namespace Morpion_métier
         /// Liste des cases
         /// </summary>
         private Case[,] cases;
+        public Case[,] Cases
+        {
+            get
+            {
+                return this.cases;
+            }
+        }
 
         /// <summary>
         /// Instance du morpion auquel appartient le plateau.
@@ -93,9 +100,9 @@ namespace Morpion_métier
                 // Lignes
                 for (int i = 0; i < 3; i++)
                 {
-                    if (this.cases[i, 0].EstMarquee() == joueur
-                    && this.cases[i, 1].EstMarquee() == joueur
-                    && this.cases[i, 2].EstMarquee() == joueur)
+                    if (this.cases[i, 0].Joueur == joueur
+                    && this.cases[i, 1].Joueur == joueur
+                    && this.cases[i, 2].Joueur == joueur)
                     {
                         joueurGagnant = joueur;
                     }
@@ -104,26 +111,26 @@ namespace Morpion_métier
                 // Colonnes
                 for (int i = 0; i < 3; i++)
                 {
-                    if (this.cases[0, i].EstMarquee() == joueur
-                    && this.cases[1, i].EstMarquee() == joueur
-                    && this.cases[2, i].EstMarquee() == joueur)
+                    if (this.cases[0, i].Joueur == joueur
+                    && this.cases[1, i].Joueur == joueur
+                    && this.cases[2, i].Joueur == joueur)
                     {
                         joueurGagnant = joueur;
                     }
                 }
 
                 // Diagonale TL-DR
-                if (this.cases[0, 0].EstMarquee() == joueur
-                && this.cases[1, 1].EstMarquee() == joueur
-                && this.cases[2, 2].EstMarquee() == joueur)
+                if (this.cases[0, 0].Joueur == joueur
+                && this.cases[1, 1].Joueur == joueur
+                && this.cases[2, 2].Joueur == joueur)
                 {
                     joueurGagnant = joueur;
                 }
 
                 // Diagonale DL-TR
-                if (this.cases[0, 2].EstMarquee() == joueur
-                && this.cases[1, 1].EstMarquee() == joueur
-                && this.cases[2, 0].EstMarquee() == joueur)
+                if (this.cases[0, 2].Joueur == joueur
+                && this.cases[1, 1].Joueur == joueur
+                && this.cases[2, 0].Joueur == joueur)
                 {
                     joueurGagnant = joueur;
                 }
@@ -148,7 +155,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (this.cases[i, j].EstMarquee() == null)
+                    if (this.cases[i, j].Joueur == null)
                     {
                         plateauRempli = false;
                     }
@@ -171,8 +178,8 @@ namespace Morpion_métier
                     // Ecriture
                     String c = "- ";
 
-                    if (this.cases[j, i].EstMarquee() == this.MorpionJeu.Joueur1) c = "X";
-                    else if (this.cases[j, i].EstMarquee() == this.MorpionJeu.Joueur2) c = "O";
+                    if (this.cases[j, i].Joueur == this.MorpionJeu.Joueur1) c = "X";
+                    else if (this.cases[j, i].Joueur == this.MorpionJeu.Joueur2) c = "O";
 
                     Console.Write(c + " ");
 

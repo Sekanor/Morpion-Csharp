@@ -21,7 +21,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
             morpion.PlateauJeu.Afficher();
-            Assert.AreEqual(morpion.Joueur1, morpion.PlateauJeu.GetCase(1, 1).EstMarquee());
+            Assert.AreEqual(morpion.Joueur1, morpion.PlateauJeu.GetCase(1, 1).Joueur);
 
             Console.Write("===========\n\n");
 
@@ -32,7 +32,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
             morpion.PlateauJeu.Afficher();
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 0).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 0).Joueur);
 
             // Tour 3 -- test règle 3: si l'IA détecte une case pouvant faire gagner l'adversaire, elle joue dans cette case.
             morpion.Tour(1, 0);
@@ -40,7 +40,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
             morpion.PlateauJeu.Afficher();
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(1, 2).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(1, 2).Joueur);
 
         }
     }

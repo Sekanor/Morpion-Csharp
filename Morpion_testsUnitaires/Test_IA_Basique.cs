@@ -21,12 +21,12 @@ namespace Morpion_testsUnitaires
 
             morpion.Tour(0, 0);
 
-            Assert.AreEqual(null, morpion.PlateauJeu.GetCase(1, 0).EstMarquee());
+            Assert.AreEqual(null, morpion.PlateauJeu.GetCase(1, 0).Joueur);
             
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
 
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(1, 0).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(1, 0).Joueur);
 
             // Tour 2
 
@@ -35,7 +35,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
 
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(2, 0).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(2, 0).Joueur);
 
             // Tour 3
             
@@ -44,7 +44,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
 
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 1).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 1).Joueur);
 
             // Tour 4
 
@@ -53,7 +53,7 @@ namespace Morpion_testsUnitaires
             pos = ia.Jouer();
             morpion.Tour(pos.X, pos.Y);
 
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(2, 0).EstMarquee());
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(2, 0).Joueur);
 
             // Tour 5
 

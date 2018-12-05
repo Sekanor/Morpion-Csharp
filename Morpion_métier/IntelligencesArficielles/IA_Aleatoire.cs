@@ -25,7 +25,7 @@ namespace Morpion_métier
             {
                 for (int caseY = 0; caseY < 3; caseY++)
                 {
-                    if (this.Plateau.GetCase(caseX, caseY).EstMarquee() == null)
+                    if (this.Plateau.GetCase(caseX, caseY).Joueur == null)
                     {
                         positionsLibres.Add(new Position(caseX, caseY));
                     }

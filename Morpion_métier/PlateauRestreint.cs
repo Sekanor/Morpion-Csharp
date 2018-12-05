@@ -38,7 +38,7 @@ namespace Morpion_métier
 
         public Joueur EstMarquee(int x, int y)
         {
-            return plateau.GetCase(x, y).EstMarquee();
+            return plateau.GetCase(x, y).Joueur;
         }
 
 

@@ -10,6 +10,11 @@ namespace Morpion_métier
         /// null correspond à une case non marquée.
         /// </summary>
         private Joueur joueur;
+        /// <summary>
+        /// Permet de vérifier si un joueur a marqué cette case.
+        /// Si la case n'a pas été marquée, la méthode retourne null.
+        /// </summary>
+        /// <returns>Retourne le joueur ayant marqué la case, et null si aucun.</returns>
         public Joueur Joueur
         {
             get
@@ -35,7 +40,7 @@ namespace Morpion_métier
         /// <returns>Retourne true si le joueur a correctement marqué la case.</returns>
         public Boolean Marquer(Joueur j)
         {
-            Boolean peutMarquer = (this.EstMarquee() == null || j == null);
+            Boolean peutMarquer = (this.Joueur == null || j == null);
 
             if (peutMarquer)
             {
@@ -45,14 +50,6 @@ namespace Morpion_métier
             return peutMarquer;
         }
 
-        /// <summary>
-        /// Permet de vérifier si un joueur a marqué cette case.
-        /// Si la case n'a pas été marquée, la méthode retourne null.
-        /// </summary>
-        /// <returns>Retourne le joueur ayant marqué la case, et null si aucun.</returns>
-        public Joueur EstMarquee()
-        {
-            return this.joueur;
-        }
+        
     }
 }

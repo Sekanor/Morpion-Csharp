@@ -35,7 +35,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    estVide = estVide && (this.Plateau.GetCase(i, j).EstMarquee() == null);
+                    estVide = estVide && (this.Plateau.GetCase(i, j).Joueur == null);
                 }
             }
 
@@ -48,8 +48,8 @@ namespace Morpion_métier
             if (pos == null)
             {
 
-                if (this.Plateau.GetCase(1, 1).EstMarquee() != this.Plateau.JoueurCourant
-                    && this.Plateau.GetCase(1, 1).EstMarquee() != null)
+                if (this.Plateau.GetCase(1, 1).Joueur != this.Plateau.JoueurCourant
+                    && this.Plateau.GetCase(1, 1).Joueur != null)
                 {
                     // Cela signifie que l'autre joueur a joué dans cette case.
 
@@ -61,7 +61,7 @@ namespace Morpion_métier
                         {
                             if (!(i == 1 && j == 1))
                             {
-                                estPresqueVide = estPresqueVide && (this.Plateau.GetCase(i, j).EstMarquee() == null);
+                                estPresqueVide = estPresqueVide && (this.Plateau.GetCase(i, j).Joueur == null);
                             }
                         }
                     }
