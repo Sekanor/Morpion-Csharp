@@ -35,6 +35,13 @@ namespace Morpion_métier
             return plateau.GetCase(x, y);
         }
 
+
+        public Joueur EstMarquee(int x, int y)
+        {
+            return plateau.GetCase(x, y).EstMarquee();
+        }
+
+
         /// <summary>
         /// Retourne le joueur 1 de la partie.
         /// </summary>
@@ -66,6 +73,33 @@ namespace Morpion_métier
             {
                 return plateau.MorpionJeu.JoueurCourant;
             }
+        }
+
+        /// <summary>
+        /// Cette méthode vérifie s'il y a une victoire.
+        /// Dans le cas ou un joueur à gagné, la méthode renvoie ce joueur.
+        /// Si aucun joueur n'a gagné, la méthode renvoie null.
+        /// </summary>
+        /// <param name="list">Liste des joueurs, utilisée pour simplifier la vérification de victoire.</param>
+        /// <returns>Retourne le joueur ayant gagné la partie, et null s'il n'y en a pas.</returns>
+        public Joueur VerifierVictoire()
+        {
+            // Cette méthode recrée une liste de joueurs, à optimiser.
+
+            List<Joueur> liste = new List<Joueur>();
+            liste.Add(this.Joueur1);
+            liste.Add(this.Joueur2);
+
+            return this.plateau.VerifierVictoire(liste);
+        }
+
+        /// <summary>
+        /// Cette méthode vérifie si le plateau est rempli.
+        /// </summary>
+        /// <returns>Retourne true si le plateau est rempli.</returns>
+        public Boolean VerifierPlateauRempli()
+        {
+            return this.plateau.VerifierPlateauRempli();
         }
 
     }
