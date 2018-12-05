@@ -36,34 +36,63 @@ namespace Morpion_Csharp
         private void BoutonJouer_Click(object sender, RoutedEventArgs e)
         {
             String J1 = textBoxJoueur1.Text;
-            String J2 = textBoxJoueur2.Text;
-
-            // Si les champs Joueur1 et Joueur2 ne sont pas vides, on lance la partie
-            if (J1 != "" && J2 != "")
+            
+            // Si le champ Joueur 1 n'est pas vide
+            if (J1 != "")
             {
-                // Si les deux joueurs n'ont pas le même nom
-                if (J1 != J2)
+                // Partie Joueur VS Joueur
+                if (Convert.ToBoolean(radioJoueur.IsChecked))
                 {
-                    morpion.Initialisation(J1, J2);
-                    NettoyerPlateau(); // Nettoyage du plateau
-                    listeActions.Items.Clear(); // Nettoyage de l'historique des actions
-                    listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
-                    MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
+                    String J2 = textBoxJoueur2.Text;
+
+                    // Si le champ Joueur 2 n'est pas vide
+                    if (J2 != "")
+                    {
+                        // Si les deux joueurs n'ont pas le même nom
+                        if (J1 != J2)
+                        {
+                            morpion.Initialisation(J1, J2);
+                            NettoyerPlateau(); // Nettoyage du plateau
+                            listeActions.Items.Clear(); // Nettoyage de l'historique des actions
+                            listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
+                            MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        // Si les deux joueurs ont le même nom, on affiche un message d'erreur
+                        else
+                        {
+                            MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    // Si le champ Joueur 2 est vide, on affiche un message d'erreur
+                    else
+                    {
+                        MessageBox.Show("Veuillez indiquer un nom pour le Joueur 2.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
-                
-                // Si les deux joueurs ont le même nom, on affiche un message d'erreur
+
+                // Partie Joueur VS I.A. simple
+                else if (Convert.ToBoolean(radioSimple.IsChecked))
+                {
+                    // TODO : Lancer une partie avec une I.A. simple
+                }
+
+                // Partie Joueur VS I.A. complexe
+                else if (Convert.ToBoolean(radioSimple.IsChecked))
+                {
+                    // TODO : Lancer une partie avec une I.A. complexe
+                }
+
+                // Aucun type de partie sélectionné
                 else
                 {
-                    MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Veuillez indiquer le type de partie que vous souhaitez jouer.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
-
-
-            // Si l'un des deux champs est vide, on affiche un message d'erreur
+            // Si le champ Joueur 1 est vide, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Veuillez indiquer le nom des deux joueurs avant de lancer une partie.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Veuillez indiquer un nom pour le Joueur 1.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
