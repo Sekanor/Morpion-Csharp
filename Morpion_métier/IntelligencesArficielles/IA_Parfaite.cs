@@ -81,13 +81,22 @@ namespace Morpion_métier
 
                 // On évalue tous les mouvements possibles, qu'on place dans une liste.
                 List<Position> positionsLibres = this.GetPositionsLibres(p);
-                int[] evaluations = new int[9];
+                List<int> evaluations = new List<int>();
 
                 foreach (Position pos in positionsLibres)
                 {
                     // Création d'une copie de plateau
+                    Morpion morpionClone = new Morpion();
+                    morpionClone.PlateauJeu = this.Plateau.Clone(morpionClone);
+                    morpionClone.Tour(pos.X, pos.Y);
 
-                    
+                    evaluations.Add(this.EvaluationPosition(morpionClone.PlateauRestreint));
+                }
+
+                // On renvoie la meilleure évaluation possible de la position.
+                int maxEval = -1;
+                foreach(int eval in evaluations) {
+                    maxEval = Math.Max(maxEval, eval);
                 }
 
             }

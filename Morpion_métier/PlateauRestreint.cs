@@ -102,5 +102,14 @@ namespace Morpion_métier
             return this.plateau.VerifierPlateauRempli();
         }
 
+        /// <summary>
+        /// Clone le plateau : renvoie une nouvelle version du plateau, codée de manière identique.
+        /// </summary>
+        /// <returns>Retourne une nouvelle version du plateau, clonée.</returns>
+        public Plateau Clone(Morpion morpion)
+        {
+            return this.plateau.Clone(morpion);
+        }
+
     }
 }

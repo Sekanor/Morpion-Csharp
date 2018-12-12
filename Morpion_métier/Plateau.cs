@@ -192,9 +192,13 @@ namespace Morpion_métier
             Console.Write("\n");
         }
 
-        public Plateau Clone()
+        /// <summary>
+        /// Clone le plateau : renvoie une nouvelle version du plateau, codée de manière identique.
+        /// </summary>
+        /// <returns>Retourne une nouvelle version du plateau, clonée.</returns>
+        public Plateau Clone(Morpion morpion)
         {
-            Plateau p = new Plateau(this.MorpionJeu);
+            Plateau p = new Plateau(morpion);
             for(int x = 0; x < 3; x++)
             {
                 for (int y = 0; y < 3; y++)

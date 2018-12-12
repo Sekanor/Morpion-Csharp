@@ -52,7 +52,9 @@ namespace Morpion_testsUnitaires
             morpion.Initialisation("Joueur1", "Joueur2");
             morpion.Tour(1, 2);
 
-            Plateau plateau2 = morpion.PlateauJeu.Clone();
+            Plateau plateau2 = morpion.PlateauJeu.Clone(new Morpion());
+
+            // Test de chaque case, impropre
             Assert.AreEqual(null, plateau2.GetCase(0, 0).Joueur);
             Assert.AreEqual(null, plateau2.GetCase(0, 1).Joueur);
             Assert.AreEqual(null, plateau2.GetCase(0, 2).Joueur);
@@ -64,11 +66,7 @@ namespace Morpion_testsUnitaires
             Assert.AreEqual(null, plateau2.GetCase(2, 2).Joueur);
 
 
-            Console.Write(morpion.PlateauJeu);
-            Console.Write(plateau2);
             Assert.AreEqual(morpion.PlateauJeu, plateau2);
-            
-
         }
     }
 }
