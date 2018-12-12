@@ -207,6 +207,31 @@ namespace Morpion_métier
 
         }
 
+        public override bool Equals(object obj)
+        {
+            bool res = false;
+            var plateau = obj as Plateau;
 
+            if (plateau != null)
+            {
+                // On suppose que les deux plateaux sont identiques.
+                bool memePlateau = true;
+
+                for (int x = 0; x < 3; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        bool memeCase = this.GetCase(x, y).Equals(plateau.GetCase(x, y));
+                        memePlateau = memePlateau && memeCase;
+                    }
+                }
+
+                res = memePlateau;
+
+            }
+
+            return res;
+
+        }
     }
 }

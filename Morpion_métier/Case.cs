@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Morpion_métier
 {
@@ -60,6 +61,12 @@ namespace Morpion_métier
             return peutMarquer;
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            var @case = obj as Case;
+            return @case != null &&
+                   EqualityComparer<Joueur>.Default.Equals(joueur, @case.joueur) &&
+                   EqualityComparer<Joueur>.Default.Equals(Joueur, @case.Joueur);
+        }
     }
 }

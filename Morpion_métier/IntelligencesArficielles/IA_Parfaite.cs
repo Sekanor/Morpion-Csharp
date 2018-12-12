@@ -85,8 +85,7 @@ namespace Morpion_métier
 
                 foreach (Position pos in positionsLibres)
                 {
-                    // Création d'une copie de Morpion
-                    Morpion copieMorpion = new Morpion();
+                    // Création d'une copie de plateau
 
                     
                 }
