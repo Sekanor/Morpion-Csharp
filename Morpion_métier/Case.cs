@@ -23,11 +23,21 @@ namespace Morpion_métier
             }
         }
 
+        private Plateau plateau;
+        public Plateau PlateauJeu
+        {
+            get
+            {
+                return this.plateau;
+            }
+        }
+
         /// <summary>
         /// Constructeur de la classe Case.
         /// </summary>
-        public Case()
+        public Case(Plateau plateau)
         {
+            this.plateau = plateau;
             this.joueur = null;
         }
 

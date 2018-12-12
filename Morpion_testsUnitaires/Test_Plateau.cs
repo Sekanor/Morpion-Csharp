@@ -44,5 +44,11 @@ namespace Morpion_testsUnitaires
             }
             Assert.AreEqual(true, estVide);
         }
+
+        [TestMethod]
+        public void TestClone()
+        {
+
+        }
     }
 }

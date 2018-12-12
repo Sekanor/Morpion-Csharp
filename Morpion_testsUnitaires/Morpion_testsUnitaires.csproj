@@ -57,6 +57,7 @@
     <Compile Include="Test_IA_Basique.cs" />
     <Compile Include="Test_IA_Aleatoire.cs" />
     <Compile Include="Test_IA_Evoluee.cs" />
+    <Compile Include="Test_IA_Parfaite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

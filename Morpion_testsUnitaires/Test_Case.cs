@@ -10,7 +10,8 @@ namespace Morpion_testsUnitaires
         [TestMethod]
         public void Test_Marquer()
         {
-            Case c = new Case();
+            Plateau plateau = new Plateau(new Morpion());
+            Case c = new Case(plateau);
             Joueur j1 = new Joueur(1);
             Joueur j2 = new Joueur(2);
 

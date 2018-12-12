@@ -31,6 +31,10 @@ namespace Morpion_métier
             {
                 return this.plateauJeu;
             }
+            set
+            {
+                this.plateauJeu = value;
+            }
         }
 
         /// <summary>

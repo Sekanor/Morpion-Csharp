@@ -44,7 +44,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    this.cases[i, j] = new Case();
+                    this.cases[i, j] = new Case(this);
                 }
             }
         }
@@ -191,5 +191,22 @@ namespace Morpion_métier
             }
             Console.Write("\n");
         }
+
+        public Plateau Clone()
+        {
+            Plateau p = new Plateau(this.MorpionJeu);
+            for(int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    p.GetCase(x, y).Marquer(this.GetCase(x, y).Joueur);
+                }
+            }
+
+            return p;
+
+        }
+
+
     }
 }

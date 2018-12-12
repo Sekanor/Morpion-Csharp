@@ -81,9 +81,13 @@ namespace Morpion_métier
 
                 // On évalue tous les mouvements possibles, qu'on place dans une liste.
                 List<Position> positionsLibres = this.GetPositionsLibres(p);
+                int[] evaluations = new int[9];
 
                 foreach (Position pos in positionsLibres)
                 {
+                    // Création d'une copie de Morpion
+                    Morpion copieMorpion = new Morpion();
+
                     
                 }
 
