@@ -38,7 +38,7 @@ namespace Morpion_testsUnitaires
         }
 
         [TestMethod]
-        public void TestIA2()
+        public void MatchTestIAs()
         {
 
             Morpion morpion = new Morpion();

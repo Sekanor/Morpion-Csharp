@@ -5,51 +5,6 @@ using System.Text;
 namespace Morpion_métier
 {
 
-    public class Move
-    {
-        private Position position;
-        public Position Position
-        {
-            get
-            {
-                return this.position;
-            }
-            set
-            {
-                this.position = value;
-            }
-        }
-        private int evaluation;
-        public int Evaluation
-        {
-            get
-            {
-                return this.evaluation;
-            }
-            set
-            {
-                this.evaluation = value;
-            }
-        }
-
-        public Move(Position pos, int eval)
-        {
-            this.position = pos;
-            this.evaluation = eval;
-        }
-
-        public Move()
-        {
-            this.position = null;
-            this.evaluation = -2;
-        }
-
-        public override string ToString()
-        {
-            return this.position.ToString() + " evaluated " + this.evaluation;
-        }
-    }
-
     /// <summary>
     /// Cette intelligence artificielle a pour objectif de jouer parfaitement;
     /// soit, de ne jamais perdre, et de gagner lorsque l'adversaire fait une erreur
@@ -74,8 +29,8 @@ namespace Morpion_métier
             //return move.Position;
 
             List<Position> positionsLibres = this.GetPositionsLibres(this.Plateau);
+            List<Position> bestPositionsList = new List<Position>();
 
-            Position bestPosition = null;
             int bestEval = -67736;
 
             foreach (Position pos in positionsLibres)
@@ -90,14 +45,15 @@ namespace Morpion_métier
                 {
                     morpionClone.Tour(pos.X, pos.Y);
                     int eval = this.Minimax(morpionClone.PlateauRestreint, false);
-                    if (bestPosition == null)
+                    if (bestPositionsList.Count == 0 || eval == bestEval)
                     {
-                        bestPosition = pos;
+                        bestPositionsList.Add(pos);
                         bestEval = eval;
                     }
                     else if (eval > bestEval)
                     {
-                        bestPosition = pos;
+                        bestPositionsList.Clear();
+                        bestPositionsList.Add(pos);
                         bestEval = eval;
                     }
                 }
@@ -105,112 +61,25 @@ namespace Morpion_métier
                 {
                     morpionClone.Tour(pos.X, pos.Y);
                     int eval = this.Minimax(morpionClone.PlateauRestreint, true);
-                    if (bestPosition == null)
+                    if (bestPositionsList.Count == 0 || eval == bestEval)
                     {
-                        bestPosition = pos;
+                        bestPositionsList.Add(pos);
                         bestEval = eval;
                     }
                     else if (eval < bestEval)
                     {
-                        bestPosition = pos;
+                        bestPositionsList.Clear();
+                        bestPositionsList.Add(pos);
                         bestEval = eval;
                     }
                 }
             }
+            Random rand = new Random();
+            int index = rand.Next(bestPositionsList.Count);
+            Position bestPosition = bestPositionsList[index];
 
             return bestPosition;
 
-        }
-
-        /// <summary>
-        /// 1 si la position est gagnante,
-        /// 0 si on ne sait pas,
-        /// -1 si la position est perdante.
-        /// Implémentation de l'algorithme Minimax pour évaluer les positions.
-        /// 
-        /// Principe :
-        /// - si la position est déterminée, on retourne 1 ou -1 (respectivement
-        /// joueur1 gagne et joueur2 gagne)
-        /// - on retourne 0 si la position est déterminée match nul.
-        /// - Sinon, on parcourt l'arbre:
-        ///     - on fait une liste de tous les mouvements possibles.
-        ///     - on crée des copies du morpion avec ces mouvements joués,
-        ///       qu'on évalue avec la fonction évaluation.
-        ///     - on obtient une suite de positions avec leur évaluation respective;
-        ///     - on applique Minimax pour connaître quel mouvements on sélectionne;
-        ///     - on sélectionne aléatoirement parmi les mouvements ayant la meilleure
-        ///       évaluation,
-        ///     - on retourne le résultat (la position, et éventuellement son eval).
-        /// </summary>
-        /// <param name="p">Plateau à évaluer passé en paramètre.</param>
-        /// <returns></returns>
-        public Move EvaluationPosition(PlateauRestreint p, bool firstMove)
-        {
-
-            // On évalue tous les mouvements possibles, qu'on place dans une liste.
-            List<Position> positionsLibres = this.GetPositionsLibres(p);
-            List<Move> moves = new List<Move>();
-
-            foreach (Position pos in positionsLibres)
-            {
-
-                Move move = new Move(pos, -2);
-
-                // Création d'une copie de plateau
-                Morpion morpionClone = new Morpion();
-                morpionClone.Initialisation(p.Joueur1, p.Joueur2);
-                morpionClone.PlateauJeu = p.Clone(morpionClone);
-                morpionClone.Tour(pos.X, pos.Y);
-                //morpionClone.PlateauJeu.Afficher();
-
-                if (morpionClone.PlateauRestreint.VerifierVictoire() == this.Plateau.JoueurCourant)
-                {
-                    // Victoire de l'IA : retourne 1.
-                    move.Evaluation = 1;
-                }
-                else if (morpionClone.PlateauRestreint.VerifierVictoire() != null && morpionClone.PlateauRestreint.VerifierVictoire() != this.Plateau.JoueurCourant)
-                {
-                    // Défaite de l'IA : retourne -1.
-                    move.Evaluation = -1;
-                    
-                }
-                else if (morpionClone.PlateauRestreint.VerifierPlateauRempli())
-                {
-                    // Match nul : retourne 0.
-                    move.Evaluation = 0;
-                }
-                else
-                {
-                    Move res = this.EvaluationPosition(morpionClone.PlateauRestreint, false);
-                    move.Evaluation = res.Evaluation;
-                }
-
-                // La position a été évaluée
-                moves.Add(move);
-            }
-
-            // Evaluation finale
-
-            if (firstMove)
-            {
-                // point d'arrêt
-                Console.Write("HiDingDingPipe\n");
-            }
-
-            Move bestMove = new Move();
-            IA_Aleatoire rand = new IA_Aleatoire(this.Plateau);
-            bestMove.Position = rand.Jouer();
-
-            foreach (Move move in moves)
-            {
-                if (move.Evaluation >= bestMove.Evaluation)
-                {
-                    bestMove = move;
-                }
-            }
-
-            //Console.Write(bestMove.Position+"\n");
-            return bestMove;
         }
 
         public int Minimax(PlateauRestreint p, bool maximizingPlayer)
