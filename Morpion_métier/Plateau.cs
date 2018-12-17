@@ -199,13 +199,26 @@ namespace Morpion_métier
         public Plateau Clone(Morpion morpion)
         {
             Plateau p = new Plateau(morpion);
+            bool isJ1 = true;
             for(int x = 0; x < 3; x++)
             {
                 for (int y = 0; y < 3; y++)
                 {
                     p.GetCase(x, y).Marquer(this.GetCase(x, y).Joueur);
+
+                    if (this.GetCase(x,y).Joueur != null)
+                    {
+                        isJ1 = !isJ1;
+                    }
                 }
             }
+
+            // Mise à jour du joueur courant
+            if (!isJ1)
+            {
+                morpion.JoueurCourant = morpion.Joueur2;
+            }
+           
 
             return p;
 

@@ -34,6 +34,7 @@ namespace Morpion_métier
             set
             {
                 this.plateauJeu = value;
+                this.plateauRestreint.PlateauJeu = value;
             }
         }
 
@@ -87,6 +88,10 @@ namespace Morpion_métier
             {
                 return this.joueurCourant;
             }
+            set
+            {
+                this.joueurCourant = value;
+            }
         }
 
         /// <summary>
@@ -113,6 +118,20 @@ namespace Morpion_métier
             this.enJeu = true;
             this.Joueur1.Nom = nomJoueur1;
             this.Joueur2.Nom = nomJoueur2;
+            this.joueurCourant = this.Joueur1;
+            this.PlateauJeu.Reinitialiser();
+        }
+
+        /// <summary>
+        /// Initialise le déroulement d'une partie.
+        /// </summary>
+        /// <param name="nomJoueur1">Nom du premier joueur.</param>
+        /// <param name="nomJoueur2">Nom du deuxième joueur.</param>
+        public void Initialisation(Joueur j1, Joueur j2)
+        {
+            this.enJeu = true;
+            this.listeJoueurs[0] = j1;
+            this.listeJoueurs[1] = j2;
             this.joueurCourant = this.Joueur1;
             this.PlateauJeu.Reinitialiser();
         }

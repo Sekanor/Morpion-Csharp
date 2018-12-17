@@ -51,7 +51,7 @@
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Width="323">
-						<GridViewColumnHeader>Historique des action</GridViewColumnHeader>
+						<GridViewColumnHeader>Historique des actions</GridViewColumnHeader>
 					</GridViewColumn>
 				</GridView>
 			</ListView.View>

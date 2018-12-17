@@ -50,5 +50,10 @@ namespace Morpion_métier
                    id == joueur.id &&
                    id == joueur.id;
         }
+
+        public override string ToString()
+        {
+            return this.id +" "+ this.nom;
+        }
     }
 }

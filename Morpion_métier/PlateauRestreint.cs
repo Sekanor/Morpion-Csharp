@@ -13,6 +13,13 @@ namespace Morpion_métier
     {
 
         private Plateau plateau;
+        public Plateau PlateauJeu
+        {
+            set
+            {
+                this.plateau = value;
+            }
+        }
 
         /// <summary>
         /// Constructeur de la classe PlateauRestreint.
