@@ -57,7 +57,7 @@ namespace Morpion_testsUnitaires
                 }
                 else
                 {
-                    pos = evol.Jouer();
+                    pos = perf.Jouer();
                 }
                 morpion.Tour(pos.X, pos.Y);
                 morpion.PlateauJeu.Afficher();
