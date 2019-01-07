@@ -13,28 +13,40 @@ namespace Morpion_Csharp
     {
         private Case caseMorpion;
         private Image img;
-        private BitmapImage imgFile;
 
         public CaseIHM(Case c, Image img)
         {
             this.caseMorpion = c;
             this.img = img;
-            this.imgFile = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
+            this.img.Source = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
+        }
+
+        public Case getCaseMorpion()
+        {
+            return caseMorpion;
+        }
+
+        public Image getImg()
+        {
+            return img;
         }
 
         public void marquer(Joueur j)
         {
-            this.caseMorpion.Marquer(j);
+            caseMorpion.PlateauJeu.MorpionJeu.Tour(caseMorpion.X, caseMorpion.Y);
 
             if (this.caseMorpion.Joueur == this.caseMorpion.PlateauJeu.MorpionJeu.Joueur1)
             {
-                this.imgFile = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
+                this.img.Source = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
+                Console.WriteLine("J1 a joué");
             }
 
-            else if (this.caseMorpion.Joueur == this.caseMorpion.PlateauJeu.MorpionJeu.Joueur2)
+            if (this.caseMorpion.Joueur == this.caseMorpion.PlateauJeu.MorpionJeu.Joueur2)
             {
-                this.imgFile = new BitmapImage(new Uri("Images/j2.png", UriKind.Relative));
+                this.img.Source = new BitmapImage(new Uri("Images/j2.png", UriKind.Relative));
+                Console.WriteLine("J2 a joué");
             }
+
         }
 
     }

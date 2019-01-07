@@ -24,6 +24,11 @@ namespace Morpion_Csharp
         private Morpion morpion;
         private PlateauIHM plateauIHM;
 
+        private String j1;
+        private String j2;
+        private IA ia;
+        private Boolean partieIA;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,17 +36,17 @@ namespace Morpion_Csharp
 
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), imgTL));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), imgTC));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), imgTR));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), B1));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), C1));
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 1), imgML));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 1), imgMC));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 1), imgMR));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 1), A2));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 1), B2));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 1), C2));
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), imgBL));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), imgBC));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), imgBR));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), A3));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), B3));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), C3));
         }
 
 
@@ -50,27 +55,24 @@ namespace Morpion_Csharp
         /// </summary>
         private void BoutonJouer_Click(object sender, RoutedEventArgs e)
         {
-            String J1 = textBoxJoueur1.Text;
-            
+            j1 = textBoxJoueur1.Text;
+            j2 = "";
+
             // Si le champ Joueur 1 n'est pas vide
-            if (J1 != "")
+            if (j1 != "")
             {
                 // Partie Joueur VS Joueur
                 if (Convert.ToBoolean(radioJoueur.IsChecked))
                 {
-                    String J2 = textBoxJoueur2.Text;
+                    j2 = textBoxJoueur2.Text;
 
                     // Si le champ Joueur 2 n'est pas vide
-                    if (J2 != "")
+                    if (j2 != "")
                     {
                         // Si les deux joueurs n'ont pas le même nom
-                        if (J1 != J2)
+                        if (j1 != j2)
                         {
-                            morpion.Initialisation(J1, J2);
-                            NettoyerPlateau(); // Nettoyage du plateau
-                            listeActions.Items.Clear(); // Nettoyage de l'historique des actions
-                            listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
-                            MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
+                            InitialiserMorpion(j1, j2);
                         }
                         // Si les deux joueurs ont le même nom, on affiche un message d'erreur
                         else
@@ -88,13 +90,19 @@ namespace Morpion_Csharp
                 // Partie Joueur VS I.A. simple
                 else if (Convert.ToBoolean(radioSimple.IsChecked))
                 {
-                    // TODO : Lancer une partie avec une I.A. simple
+                    j2 = "I.A. Simple";
+                    ia = new IA_Evoluee(morpion.PlateauRestreint);
+                    InitialiserMorpion(j1, j2);
+                    partieIA = true;
                 }
 
                 // Partie Joueur VS I.A. complexe
-                else if (Convert.ToBoolean(radioSimple.IsChecked))
+                else if (Convert.ToBoolean(radioComplexe.IsChecked))
                 {
-                    // TODO : Lancer une partie avec une I.A. complexe
+                    j2 = "I.A. Complexe";
+                    ia = new IA_Parfaite(morpion.PlateauRestreint);
+                    InitialiserMorpion(j1, j2);
+                    partieIA = true;
                 }
 
                 // Aucun type de partie sélectionné
@@ -111,6 +119,20 @@ namespace Morpion_Csharp
             }
         }
 
+        /// <summary>
+        /// Initialise la partie de Morpion avec les joueurs donnés
+        /// </summary>
+        /// <param name="J1">Nom du Joueur 1</param>
+        /// <param name="J2">Nom du Joueur 2</param>
+        public void InitialiserMorpion(String J1, String J2)
+        {
+            morpion.Initialisation(J1, J2);
+            NettoyerPlateau(); // Nettoyage du plateau
+            listeActions.Items.Clear(); // Nettoyage de l'historique des actions
+            listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
+            MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
         /// <summary>
         /// Action effectuée quand une case détecte le clic d'un joueur.
@@ -118,25 +140,16 @@ namespace Morpion_Csharp
         private void Img_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image img = sender as Image;
-            BitmapImage marque = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
 
             // Si une partie de Morpion est en cours
             if (morpion.EnJeu)
             {
                 // On vérifie que la case ne soit pas déjà marquée
-                if (img.Source.ToString() == "pack://application:,,,/Morpion-Csharp;component/Images/j0.png")
+                if (plateauIHM.getCase(img.Name).getCaseMorpion().Joueur == null)
                 {
-                    if (morpion.JoueurCourant.Equals(morpion.Joueur1))
-                    {
-                        marque = new BitmapImage(new Uri("Images/j1.png", UriKind.Relative));
-                    }
-                    else if (morpion.JoueurCourant.Equals(morpion.Joueur2))
-                    {
-                        marque = new BitmapImage(new Uri("Images/j2.png", UriKind.Relative));
-                    }
-
-                    img.Source = marque; // Marquage visuel de la case (on remplace l'image)
-                    marquerCase(img.Name); // Marquage logique de l'image
+                    plateauIHM.getCase(img.Name).marquer(morpion.JoueurCourant);
+                    listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
+                    VerifierVictoire();
                 }
 
                 // Si la case est déjà marquée, on affiche un message d'erreur
@@ -152,63 +165,6 @@ namespace Morpion_Csharp
                 MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-        }
-
-
-        /// <summary>
-        /// Marque la case logique associée à l'image dont le nom est passé en paramètre.
-        /// </summary>
-        /// <param name="imgName">Nom de l'image dont on doit marquer la case logique correspondante.</param>
-        private void marquerCase(String imgName)
-        {
-            String nomCase = "";
-
-            switch (imgName)
-            {
-                case "imgTL":
-                    morpion.Tour(0, 0);
-                    nomCase = "A1";
-                    break;
-                case "imgTC":
-                    morpion.Tour(1, 0);
-                    nomCase = "B1";
-                    break;
-                case "imgTR":
-                    morpion.Tour(2, 0);
-                    nomCase = "C1";
-                    break;
-
-                case "imgML":
-                    morpion.Tour(0, 1);
-                    nomCase = "A2";
-                    break;
-                case "imgMC":
-                    morpion.Tour(1, 1);
-                    nomCase = "B2";
-                    break;
-                case "imgMR":
-                    morpion.Tour(2, 1);
-                    nomCase = "C2";
-                    break;
-
-                case "imgBL":
-                    morpion.Tour(0, 2);
-                    nomCase = "A3";
-                    break;
-                case "imgBC":
-                    morpion.Tour(1, 2);
-                    nomCase = "B3";
-                    break;
-                case "imgBR":
-                    morpion.Tour(2, 2);
-                    nomCase = "C3";
-                    break;
-            }
-
-            listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + nomCase);
-
-            // On regarde si, suite à ce tour, la partie a un vainqueur
-            VerifierVictoire();
         }
 
 
