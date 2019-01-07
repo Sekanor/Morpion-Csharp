@@ -18,17 +18,17 @@ namespace Morpion_Csharp
             this.casesIHM = new List<CaseIHM>();
         }
 
-        public void ajouterCaseIHM(CaseIHM c)
+        public void AjouterCaseIHM(CaseIHM c)
         {
             casesIHM.Add(c);
         }
 
-        public CaseIHM getCase(int x, int y)
+        public CaseIHM GetCase(int x, int y)
         {
             CaseIHM res = null;
 
             foreach (CaseIHM c in casesIHM) {
-                if (c.getCaseMorpion().X == x && c.getCaseMorpion().Y == y)
+                if (c.GetCaseMorpion().X == x && c.GetCaseMorpion().Y == y)
                 {
                     res = c;
                 }
@@ -37,19 +37,30 @@ namespace Morpion_Csharp
             return res;
         }
 
-        public CaseIHM getCase(string imgId)
+        public CaseIHM GetCase(string imgId)
         {
             CaseIHM res = null;
 
             foreach (CaseIHM c in casesIHM)
             {
-                if (c.getImg().Name == imgId)
+                if (c.GetImage().Name == imgId)
                 {
                     res = c;
                 }
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Réinitialise les images du plateau
+        /// </summary>
+        public void Nettoyer()
+        {
+            foreach (CaseIHM c in casesIHM)
+            {
+                c.Nettoyer();
+            }
         }
 
     }

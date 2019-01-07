@@ -33,22 +33,23 @@ namespace Morpion_Csharp
         {
             InitializeComponent();
             morpion = new Morpion();
+            partieIA = false;
+
 
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), B1));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), C1));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), B1));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), C1));
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 1), A2));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 1), B2));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 1), C2));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 1), A2));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 1), B2));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 1), C2));
 
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), A3));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), B3));
-            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), C3));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), A3));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), B3));
+            this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), C3));
 
-            partieIA = false;
         }
 
 
@@ -74,6 +75,7 @@ namespace Morpion_Csharp
                         // Si les deux joueurs n'ont pas le même nom
                         if (j1 != j2)
                         {
+                            partieIA = false;
                             InitialiserMorpion(j1, j2);
                         }
                         // Si les deux joueurs ont le même nom, on affiche un message d'erreur
@@ -129,7 +131,7 @@ namespace Morpion_Csharp
         public void InitialiserMorpion(String J1, String J2)
         {
             morpion.Initialisation(J1, J2);
-            NettoyerPlateau(); // Nettoyage du plateau
+            plateauIHM.Nettoyer(); // Nettoyage du plateau
             listeActions.Items.Clear(); // Nettoyage de l'historique des actions
             listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
             MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -147,23 +149,20 @@ namespace Morpion_Csharp
             if (morpion.EnJeu)
             {
                 // On vérifie que la case ne soit pas déjà marquée
-                if (plateauIHM.getCase(img.Name).getCaseMorpion().Joueur == null)
+                if (plateauIHM.GetCase(img.Name).GetCaseMorpion().Joueur == null)
                 {
                     listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
-                    plateauIHM.getCase(img.Name).marquer(morpion.JoueurCourant);
+                    plateauIHM.GetCase(img.Name).Marquer(morpion.JoueurCourant);
                     VerifierVictoire();
 
                     // L'IA joue
                     if (partieIA && morpion.EnJeu)
                     {
                         Position pos = ia.Jouer();
-                        listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + plateauIHM.getCase(pos.X, pos.Y).getImg().Name);
-                        plateauIHM.getCase(pos.X, pos.Y).marquer(morpion.JoueurCourant);
-                        
+                        listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + plateauIHM.GetCase(pos.X, pos.Y).GetImage().Name);
+                        plateauIHM.GetCase(pos.X, pos.Y).Marquer(morpion.JoueurCourant);
                         VerifierVictoire();
                     }
-
-
                 }
 
                 // Si la case est déjà marquée, on affiche un message d'erreur
@@ -187,20 +186,11 @@ namespace Morpion_Csharp
         /// </summary>
         private void VerifierVictoire()
         {
-            // Le joueur 1 remporte la partie
-            if (morpion.Vainqueur == morpion.Joueur1)
+            if (morpion.Vainqueur != null)
             {
-                listeActions.Items.Add(morpion.Joueur1.Nom + " remporte la partie !");
-                MessageBox.Show(morpion.Joueur1.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
-                NettoyerPlateau();
-            }
-
-            // Le joueur 2 remporte la partie
-            else if (morpion.Vainqueur == morpion.Joueur2)
-            {
-                listeActions.Items.Add(morpion.Joueur2.Nom + " remporte la partie !");
-                MessageBox.Show(morpion.Joueur2.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
-                NettoyerPlateau();
+                listeActions.Items.Add(morpion.Vainqueur.Nom + " remporte la partie !");
+                MessageBox.Show(morpion.Vainqueur.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
+                plateauIHM.Nettoyer();
             }
 
             // Match nul
@@ -208,20 +198,9 @@ namespace Morpion_Csharp
             {
                 listeActions.Items.Add("Match nul !");
                 MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.", MessageBoxButton.OK, MessageBoxImage.Information);
-                NettoyerPlateau();
+                plateauIHM.Nettoyer();
             }
         }
 
-
-        /// <summary>
-        /// Réinitialise les images du plateau
-        /// </summary>
-        private void NettoyerPlateau()
-        {
-            foreach (Image img in grillePlateau.Children)
-            {
-                img.Source = new BitmapImage(new Uri("Images/j0.png", UriKind.Relative));
-            }
-        }
     }
 }
