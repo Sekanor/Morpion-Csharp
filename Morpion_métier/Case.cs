@@ -33,13 +33,35 @@ namespace Morpion_métier
             }
         }
 
+        private int x;
+        public int X
+        {
+            get
+            {
+                return x;
+            }
+        }
+
+        private int y;
+        public int Y
+        {
+            get
+            {
+                return y;
+            }
+        }
+
+
         /// <summary>
         /// Constructeur de la classe Case.
         /// </summary>
-        public Case(Plateau plateau)
+        public Case(Plateau plateau, int x, int y)
         {
             this.plateau = plateau;
             this.joueur = null;
+            this.x = x;
+            this.y = y;
+
         }
 
         /// <summary>

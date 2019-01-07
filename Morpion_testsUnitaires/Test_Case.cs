@@ -11,7 +11,7 @@ namespace Morpion_testsUnitaires
         public void Test_Marquer()
         {
             Plateau plateau = new Plateau(new Morpion());
-            Case c = new Case(plateau);
+            Case c = new Case(plateau, 0, 0);
             Joueur j1 = new Joueur(1);
             Joueur j2 = new Joueur(2);
 

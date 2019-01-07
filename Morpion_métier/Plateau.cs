@@ -44,7 +44,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    this.cases[i, j] = new Case(this);
+                    this.cases[i, j] = new Case(this, i, j);
                 }
             }
         }
