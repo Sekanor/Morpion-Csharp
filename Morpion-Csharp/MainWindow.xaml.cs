@@ -47,6 +47,8 @@ namespace Morpion_Csharp
             this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), A3));
             this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), B3));
             this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), C3));
+
+            partieIA = false;
         }
 
 
@@ -147,9 +149,21 @@ namespace Morpion_Csharp
                 // On vérifie que la case ne soit pas déjà marquée
                 if (plateauIHM.getCase(img.Name).getCaseMorpion().Joueur == null)
                 {
-                    plateauIHM.getCase(img.Name).marquer(morpion.JoueurCourant);
                     listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
+                    plateauIHM.getCase(img.Name).marquer(morpion.JoueurCourant);
                     VerifierVictoire();
+
+                    // L'IA joue
+                    if (partieIA && morpion.EnJeu)
+                    {
+                        Position pos = ia.Jouer();
+                        listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + plateauIHM.getCase(pos.X, pos.Y).getImg().Name);
+                        plateauIHM.getCase(pos.X, pos.Y).marquer(morpion.JoueurCourant);
+                        
+                        VerifierVictoire();
+                    }
+
+
                 }
 
                 // Si la case est déjà marquée, on affiche un message d'erreur

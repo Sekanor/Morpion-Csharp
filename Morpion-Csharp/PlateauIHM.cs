@@ -23,16 +23,19 @@ namespace Morpion_Csharp
             casesIHM.Add(c);
         }
 
-        /*
         public CaseIHM getCase(int x, int y)
         {
-            CaseIHM res;
+            CaseIHM res = null;
 
             foreach (CaseIHM c in casesIHM) {
-                if (c.getCaseMorpion.X())
+                if (c.getCaseMorpion().X == x && c.getCaseMorpion().Y == y)
+                {
+                    res = c;
+                }
             }
+
+            return res;
         }
-        */
 
         public CaseIHM getCase(string imgId)
         {
