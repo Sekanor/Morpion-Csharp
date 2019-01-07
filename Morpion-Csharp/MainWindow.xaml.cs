@@ -22,11 +22,26 @@ namespace Morpion_Csharp
     public partial class MainWindow : Window
     {
         private Morpion morpion;
+        private PlateauIHM plateauIHM;
 
         public MainWindow()
         {
             InitializeComponent();
             morpion = new Morpion();
+
+            plateauIHM = new PlateauIHM(morpion.PlateauJeu);
+
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), imgTL));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), imgTC));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), imgTR));
+
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 1), imgML));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 1), imgMC));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 1), imgMR));
+
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 2), imgBL));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 2), imgBC));
+            this.plateauIHM.ajouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 2), imgBR));
         }
 
 

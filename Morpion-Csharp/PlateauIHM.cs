@@ -15,10 +15,12 @@ namespace Morpion_Csharp
         public PlateauIHM(Plateau p)
         {
             this.plateauMorpion = p;
-            foreach (Case c in this.plateauMorpion.Cases)
-            {
-                casesIHM.Add(new CaseIHM(c));
-            }
+            this.casesIHM = new List<CaseIHM>();
+        }
+
+        public void ajouterCaseIHM(CaseIHM c)
+        {
+            casesIHM.Add(c);
         }
 
     }
