@@ -26,8 +26,8 @@ namespace Morpion_testsUnitaires
             morpion.Tour(0, 1);
 
             // Vérification si les cartes ont été marquées correctement.
-            Assert.AreEqual(morpion.Joueur1, morpion.PlateauJeu.GetCase(0, 0).EstMarquee());
-            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 1).EstMarquee());
+            Assert.AreEqual(morpion.Joueur1, morpion.PlateauJeu.GetCase(0, 0).Joueur);
+            Assert.AreEqual(morpion.Joueur2, morpion.PlateauJeu.GetCase(0, 1).Joueur);
 
             // Vérification si le joueur courant est correctement défini.
             Assert.AreEqual(morpion.Joueur1, morpion.JoueurCourant);
@@ -52,7 +52,7 @@ namespace Morpion_testsUnitaires
             {
                 for (int j = 0; i < 3; i++)
                 {
-                    casesVides = casesVides && (morpion.PlateauJeu.GetCase(i, j).EstMarquee() == null);
+                    casesVides = casesVides && (morpion.PlateauJeu.GetCase(i, j).Joueur == null);
                 }
             }
             Assert.AreEqual(true, casesVides);

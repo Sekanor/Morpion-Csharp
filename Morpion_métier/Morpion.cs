@@ -31,6 +31,23 @@ namespace Morpion_métier
             {
                 return this.plateauJeu;
             }
+            set
+            {
+                this.plateauJeu = value;
+                this.plateauRestreint.PlateauJeu = value;
+            }
+        }
+
+        /// <summary>
+        /// Plateau de jeu en lecture seule, transféré aux IAs.
+        /// </summary>
+        private PlateauRestreint plateauRestreint;
+        public PlateauRestreint PlateauRestreint
+        {
+            get
+            {
+                return this.plateauRestreint;
+            }
         }
 
         /// <summary>
@@ -71,8 +88,11 @@ namespace Morpion_métier
             {
                 return this.joueurCourant;
             }
+            set
+            {
+                this.joueurCourant = value;
+            }
         }
-
 
         /// <summary>
         /// Constructeur de la classe Morpion.
@@ -80,6 +100,7 @@ namespace Morpion_métier
         public Morpion()
         {
             this.plateauJeu = new Plateau(this);
+            this.plateauRestreint = new PlateauRestreint(this.plateauJeu);
             this.listeJoueurs = new List<Joueur>();
 
             // Initialisation des joueurs
@@ -97,6 +118,20 @@ namespace Morpion_métier
             this.enJeu = true;
             this.Joueur1.Nom = nomJoueur1;
             this.Joueur2.Nom = nomJoueur2;
+            this.joueurCourant = this.Joueur1;
+            this.PlateauJeu.Reinitialiser();
+        }
+
+        /// <summary>
+        /// Initialise le déroulement d'une partie.
+        /// </summary>
+        /// <param name="nomJoueur1">Nom du premier joueur.</param>
+        /// <param name="nomJoueur2">Nom du deuxième joueur.</param>
+        public void Initialisation(Joueur j1, Joueur j2)
+        {
+            this.enJeu = true;
+            this.listeJoueurs[0] = j1;
+            this.listeJoueurs[1] = j2;
             this.joueurCourant = this.Joueur1;
             this.PlateauJeu.Reinitialiser();
         }

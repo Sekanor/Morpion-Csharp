@@ -10,11 +10,25 @@ namespace Morpion_métier
         /// Liste des cases
         /// </summary>
         private Case[,] cases;
+        public Case[,] Cases
+        {
+            get
+            {
+                return this.cases;
+            }
+        }
 
         /// <summary>
         /// Instance du morpion auquel appartient le plateau.
         /// </summary>
         private Morpion morpion;
+        public Morpion MorpionJeu
+        {
+            get
+            {
+                return this.morpion;
+            }
+        }
 
         /// <summary>
         /// Constructeur de la classe Plateau.
@@ -30,7 +44,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    this.cases[i, j] = new Case();
+                    this.cases[i, j] = new Case(this, i, j);
                 }
             }
         }
@@ -86,9 +100,9 @@ namespace Morpion_métier
                 // Lignes
                 for (int i = 0; i < 3; i++)
                 {
-                    if (this.cases[i, 0].EstMarquee() == joueur
-                    && this.cases[i, 1].EstMarquee() == joueur
-                    && this.cases[i, 2].EstMarquee() == joueur)
+                    if (this.cases[i, 0].Joueur == joueur
+                    && this.cases[i, 1].Joueur == joueur
+                    && this.cases[i, 2].Joueur == joueur)
                     {
                         joueurGagnant = joueur;
                     }
@@ -97,26 +111,26 @@ namespace Morpion_métier
                 // Colonnes
                 for (int i = 0; i < 3; i++)
                 {
-                    if (this.cases[0, i].EstMarquee() == joueur
-                    && this.cases[1, i].EstMarquee() == joueur
-                    && this.cases[2, i].EstMarquee() == joueur)
+                    if (this.cases[0, i].Joueur == joueur
+                    && this.cases[1, i].Joueur == joueur
+                    && this.cases[2, i].Joueur == joueur)
                     {
                         joueurGagnant = joueur;
                     }
                 }
 
                 // Diagonale TL-DR
-                if (this.cases[0, 0].EstMarquee() == joueur
-                && this.cases[1, 1].EstMarquee() == joueur
-                && this.cases[2, 2].EstMarquee() == joueur)
+                if (this.cases[0, 0].Joueur == joueur
+                && this.cases[1, 1].Joueur == joueur
+                && this.cases[2, 2].Joueur == joueur)
                 {
                     joueurGagnant = joueur;
                 }
 
                 // Diagonale DL-TR
-                if (this.cases[0, 2].EstMarquee() == joueur
-                && this.cases[1, 1].EstMarquee() == joueur
-                && this.cases[2, 0].EstMarquee() == joueur)
+                if (this.cases[0, 2].Joueur == joueur
+                && this.cases[1, 1].Joueur == joueur
+                && this.cases[2, 0].Joueur == joueur)
                 {
                     joueurGagnant = joueur;
                 }
@@ -141,7 +155,7 @@ namespace Morpion_métier
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (this.cases[i, j].EstMarquee() == null)
+                    if (this.cases[i, j].Joueur == null)
                     {
                         plateauRempli = false;
                     }
@@ -149,6 +163,92 @@ namespace Morpion_métier
             }
 
             return plateauRempli;
+        }
+
+        /// <summary>
+        /// Permet d'afficher le plateau avec la console.
+        /// Fonction utile pour débuguer des erreurs dans les tests unitaires.
+        /// </summary>
+        public void Afficher()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    // Ecriture
+                    String c = "- ";
+
+                    if (this.cases[j, i].Joueur == this.MorpionJeu.Joueur1) c = "X";
+                    else if (this.cases[j, i].Joueur == this.MorpionJeu.Joueur2) c = "O";
+
+                    Console.Write(c + " ");
+
+                    if (j == 2)
+                    {
+                        Console.Write("\n");
+                    }
+                }
+            }
+            Console.Write("\n");
+        }
+
+        /// <summary>
+        /// Clone le plateau : renvoie une nouvelle version du plateau, codée de manière identique.
+        /// </summary>
+        /// <returns>Retourne une nouvelle version du plateau, clonée.</returns>
+        public Plateau Clone(Morpion morpion)
+        {
+            Plateau p = new Plateau(morpion);
+            bool isJ1 = true;
+            for(int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    p.GetCase(x, y).Marquer(this.GetCase(x, y).Joueur);
+
+                    if (this.GetCase(x,y).Joueur != null)
+                    {
+                        isJ1 = !isJ1;
+                    }
+                }
+            }
+
+            // Mise à jour du joueur courant
+            if (!isJ1)
+            {
+                morpion.JoueurCourant = morpion.Joueur2;
+            }
+           
+
+            return p;
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool res = false;
+            var plateau = obj as Plateau;
+
+            if (plateau != null)
+            {
+                // On suppose que les deux plateaux sont identiques.
+                bool memePlateau = true;
+
+                for (int x = 0; x < 3; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        bool memeCase = this.GetCase(x, y).Equals(plateau.GetCase(x, y));
+                        memePlateau = memePlateau && memeCase;
+                    }
+                }
+
+                res = memePlateau;
+
+            }
+
+            return res;
+
         }
     }
 }

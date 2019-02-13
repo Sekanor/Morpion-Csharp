@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Morpion_métier
 {
@@ -10,6 +11,11 @@ namespace Morpion_métier
         /// null correspond à une case non marquée.
         /// </summary>
         private Joueur joueur;
+        /// <summary>
+        /// Permet de vérifier si un joueur a marqué cette case.
+        /// Si la case n'a pas été marquée, la méthode retourne null.
+        /// </summary>
+        /// <returns>Retourne le joueur ayant marqué la case, et null si aucun.</returns>
         public Joueur Joueur
         {
             get
@@ -18,12 +24,44 @@ namespace Morpion_métier
             }
         }
 
+        private Plateau plateau;
+        public Plateau PlateauJeu
+        {
+            get
+            {
+                return this.plateau;
+            }
+        }
+
+        private int x;
+        public int X
+        {
+            get
+            {
+                return x;
+            }
+        }
+
+        private int y;
+        public int Y
+        {
+            get
+            {
+                return y;
+            }
+        }
+
+
         /// <summary>
         /// Constructeur de la classe Case.
         /// </summary>
-        public Case()
+        public Case(Plateau plateau, int x, int y)
         {
+            this.plateau = plateau;
             this.joueur = null;
+            this.x = x;
+            this.y = y;
+
         }
 
         /// <summary>
@@ -35,7 +73,7 @@ namespace Morpion_métier
         /// <returns>Retourne true si le joueur a correctement marqué la case.</returns>
         public Boolean Marquer(Joueur j)
         {
-            Boolean peutMarquer = (this.EstMarquee() == null || j == null);
+            Boolean peutMarquer = (this.Joueur == null || j == null);
 
             if (peutMarquer)
             {
@@ -45,13 +83,12 @@ namespace Morpion_métier
             return peutMarquer;
         }
 
-        /// <summary>
-        /// Permet de vérifier si un joueur a marqué cette case.
-        /// </summary>
-        /// <returns>Retourne le joueur ayant marqué la case, et null si aucun.</returns>
-        public Joueur EstMarquee()
+        public override bool Equals(object obj)
         {
-            return this.joueur;
+            var @case = obj as Case;
+            return @case != null &&
+                   EqualityComparer<Joueur>.Default.Equals(joueur, @case.joueur) &&
+                   EqualityComparer<Joueur>.Default.Equals(Joueur, @case.Joueur);
         }
     }
 }
