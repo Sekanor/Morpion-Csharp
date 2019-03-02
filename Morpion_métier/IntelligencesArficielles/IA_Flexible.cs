@@ -30,9 +30,14 @@ namespace Morpion_métier.IntelligencesArficielles
             }
         }
 
+        public IA_Flexible(PlateauRestreint p, int niv) : base(p)
+        {
+            this.Niveau = niv;
+        }
+
         public IA_Flexible(PlateauRestreint p) : base(p)
         {
-            this.Niveau = 50;
+            this.Niveau = 80;
         }
 
         /// <summary>
