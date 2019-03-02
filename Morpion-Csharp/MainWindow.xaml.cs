@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Morpion_métier;
+using Morpion_métier.IntelligencesArficielles;
 
 namespace Morpion_Csharp
 {
@@ -95,7 +96,9 @@ namespace Morpion_Csharp
                 else if (Convert.ToBoolean(radioSimple.IsChecked))
                 {
                     j2 = "I.A. Simple";
-                    ia = new IA_Evoluee(morpion.PlateauRestreint);
+                    ia = new IA_Flexible(morpion.PlateauRestreint);
+                    ((IA_Flexible)ia).Niveau = 90;
+                    
                     InitialiserMorpion(j1, j2);
                     partieIA = true;
                 }
