@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
-        Title="Morpion C#" Height="640" Width="836">
+        Title="Morpion" Height="640" Width="836" Icon="Images/icon.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>

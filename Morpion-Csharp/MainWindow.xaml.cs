@@ -85,8 +85,6 @@ namespace Morpion_Csharp
 
             partieIA = (EstIA(1) || EstIA(2));
 
-            
-
             if (checkBoxIAJ1.IsChecked == true)
             {
                 iaJ1 = new IA_Flexible(morpion.PlateauRestreint, Convert.ToInt32(sliderLevelJ1.Value));
@@ -180,6 +178,11 @@ namespace Morpion_Csharp
             VerifierVictoire();
         }
 
+        /// <summary>
+        /// Retourne true si le joueur en question est une IA.
+        /// </summary>
+        /// <param name="joueur">ID du joueur en question.</param>
+        /// <returns>True s'il s'agit d'une IA.</returns>
         private Boolean EstIA(int joueur)
         {
             Boolean estIA;
@@ -200,6 +203,9 @@ namespace Morpion_Csharp
             return estIA;
         }
 
+        /// <summary>
+        /// Exécute un, ou plusieurs coups de l'IA, s'il y a lieu.
+        /// </summary>
         private void CoupIA()
         {
             Boolean coupIA = true;
