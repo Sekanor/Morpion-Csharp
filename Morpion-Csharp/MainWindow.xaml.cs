@@ -160,6 +160,8 @@ namespace Morpion_Csharp
                 listeActions.Items.Add(morpion.Vainqueur.Nom + " remporte la partie !");
                 MessageBox.Show(morpion.Vainqueur.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
                 plateauIHM.Nettoyer();
+
+                GererScore();
             }
 
             // Match nul
@@ -168,6 +170,7 @@ namespace Morpion_Csharp
                 listeActions.Items.Add("Match nul !");
                 MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.", MessageBoxButton.OK, MessageBoxImage.Information);
                 plateauIHM.Nettoyer();
+                GererScore();
             }
         }
 
@@ -211,10 +214,8 @@ namespace Morpion_Csharp
             Boolean coupIA = true;
             do
             {
-                
                 if (morpion.JoueurCourant.Equals(morpion.Joueur1))
                 {
-
                     if (EstIA(1))
                     {
                         Position pos = iaJ1.Jouer();
@@ -237,11 +238,26 @@ namespace Morpion_Csharp
                         coupIA = false;
                     }
                 }
-
             } while (coupIA && morpion.EnJeu);
-            
-
         }
+
+        private void GererScore()
+        {
+            if (morpion.Joueur1.Equals(morpion.Vainqueur))
+            {
+                scoreJ1.Content = Convert.ToString(Convert.ToDouble(scoreJ1.Content) + 1);
+            }
+            else if (morpion.Joueur2.Equals(morpion.Vainqueur))
+            {
+                scoreJ2.Content = Convert.ToString(Convert.ToDouble(scoreJ2.Content) + 1);
+            }
+            else
+            {
+                scoreJ1.Content = Convert.ToString(Convert.ToDouble(scoreJ1.Content) + 0.5);
+                scoreJ2.Content = Convert.ToString(Convert.ToDouble(scoreJ2.Content) + 0.5);
+            }
+        }
+
 
         /// <summary>
         /// Se déclenche lorsqu'on clique sur la checkbox IA du joueur 1.
