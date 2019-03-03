@@ -27,7 +27,8 @@ namespace Morpion_Csharp
 
         private String j1;
         private String j2;
-        private IA ia;
+        private IA iaJ1;
+        private IA iaJ2;
         private Boolean partieIA;
 
         public MainWindow()
@@ -36,9 +37,9 @@ namespace Morpion_Csharp
             morpion = new Morpion();
             partieIA = false;
 
-
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
 
+            // Création des cases de l'IHM
             this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
             this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(1, 0), B1));
             this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(2, 0), C1));
@@ -60,70 +61,40 @@ namespace Morpion_Csharp
         private void BoutonJouer_Click(object sender, RoutedEventArgs e)
         {
             j1 = textBoxJoueur1.Text;
-            j2 = "";
+            j2 = textBoxJoueur2.Text;
 
-            // Si le champ Joueur 1 n'est pas vide
-            if (j1 != "")
-            {
-                // Partie Joueur VS Joueur
-                if (Convert.ToBoolean(radioJoueur.IsChecked))
-                {
-                    j2 = textBoxJoueur2.Text;
-
-                    // Si le champ Joueur 2 n'est pas vide
-                    if (j2 != "")
-                    {
-                        // Si les deux joueurs n'ont pas le même nom
-                        if (j1 != j2)
-                        {
-                            partieIA = false;
-                            InitialiserMorpion(j1, j2);
-                        }
-                        // Si les deux joueurs ont le même nom, on affiche un message d'erreur
-                        else
-                        {
-                            MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                    }
-                    // Si le champ Joueur 2 est vide, on affiche un message d'erreur
-                    else
-                    {
-                        MessageBox.Show("Veuillez indiquer un nom pour le Joueur 2.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-
-                // Partie Joueur VS I.A. simple
-                else if (Convert.ToBoolean(radioSimple.IsChecked))
-                {
-                    j2 = "I.A. Simple";
-                    ia = new IA_Flexible(morpion.PlateauRestreint);
-                    ((IA_Flexible)ia).Niveau = 90;
-                    
-                    InitialiserMorpion(j1, j2);
-                    partieIA = true;
-                }
-
-                // Partie Joueur VS I.A. complexe
-                else if (Convert.ToBoolean(radioComplexe.IsChecked))
-                {
-                    j2 = "I.A. Complexe";
-                    ia = new IA_Parfaite(morpion.PlateauRestreint);
-                    InitialiserMorpion(j1, j2);
-                    partieIA = true;
-                }
-
-                // Aucun type de partie sélectionné
-                else
-                {
-                    MessageBox.Show("Veuillez indiquer le type de partie que vous souhaitez jouer.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-
-            // Si le champ Joueur 1 est vide, on affiche un message d'erreur
-            else
+            // Gestion des erreurs
+            if (j1 == "")
             {
                 MessageBox.Show("Veuillez indiquer un nom pour le Joueur 1.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
+            if (j2 == "")
+            {
+                MessageBox.Show("Veuillez indiquer un nom pour le Joueur 2.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (j1 == j2)
+            {
+                MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            partieIA = (EstIA(1) || EstIA(2));
+
+            if (checkBoxIAJ1.IsChecked == true)
+            {
+                iaJ1 = new IA_Flexible(morpion.PlateauRestreint, 90);
+            }
+            if (checkBoxIAJ2.IsChecked == true)
+            {
+                iaJ2 = new IA_Flexible(morpion.PlateauRestreint, 90);
+            }
+            
+            InitialiserMorpion(j1, j2);
+
+            // On fait jouer la (les) IAs.
+            CoupIA();
         }
 
         /// <summary>
@@ -154,18 +125,10 @@ namespace Morpion_Csharp
                 // On vérifie que la case ne soit pas déjà marquée
                 if (plateauIHM.GetCase(img.Name).GetCaseMorpion().Joueur == null)
                 {
-                    listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
-                    plateauIHM.GetCase(img.Name).Marquer(morpion.JoueurCourant);
-                    VerifierVictoire();
+                    Jouer(img);
 
                     // L'IA joue
-                    if (partieIA && morpion.EnJeu)
-                    {
-                        Position pos = ia.Jouer();
-                        listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + plateauIHM.GetCase(pos.X, pos.Y).GetImage().Name);
-                        plateauIHM.GetCase(pos.X, pos.Y).Marquer(morpion.JoueurCourant);
-                        VerifierVictoire();
-                    }
+                    CoupIA();
                 }
 
                 // Si la case est déjà marquée, on affiche un message d'erreur
@@ -203,6 +166,70 @@ namespace Morpion_Csharp
                 MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.", MessageBoxButton.OK, MessageBoxImage.Information);
                 plateauIHM.Nettoyer();
             }
+        }
+
+        private void Jouer(Image img)
+        {
+            listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
+            plateauIHM.GetCase(img.Name).Marquer(morpion.JoueurCourant);
+            VerifierVictoire();
+        }
+
+        private Boolean EstIA(int joueur)
+        {
+            Boolean estIA;
+
+            switch(joueur)
+            {
+                case 1:
+                    estIA = Convert.ToBoolean(checkBoxIAJ1.IsChecked);
+                    break;
+                case 2:
+                    estIA = Convert.ToBoolean(checkBoxIAJ2.IsChecked);
+                    break;
+                default:
+                    estIA = false;
+                    break;
+            }
+
+            return estIA;
+        }
+
+        private void CoupIA()
+        {
+            Boolean coupIA = true;
+            do
+            {
+                
+                if (morpion.JoueurCourant.Equals(morpion.Joueur1))
+                {
+
+                    if (EstIA(1))
+                    {
+                        Position pos = iaJ1.Jouer();
+                        Jouer(plateauIHM.GetCase(pos.X, pos.Y).GetImage());
+                    }
+                    else
+                    {
+                        coupIA = false;
+                    }
+                }
+                else
+                {
+                    if (EstIA(2))
+                    {
+                        Position pos = iaJ2.Jouer();
+                        Jouer(plateauIHM.GetCase(pos.X, pos.Y).GetImage());
+                    }
+                    else
+                    {
+                        coupIA = false;
+                    }
+                }
+
+            } while (coupIA && morpion.EnJeu);
+            
+
         }
 
     }

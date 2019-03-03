@@ -6,56 +6,57 @@
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
         Title="Morpion C#" Height="640" Width="836">
-	<Grid>
-		<Grid x:Name="grillePlateau" Margin="10,135,338,10">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="153*"/>
-				<ColumnDefinition Width="153*"/>
-				<ColumnDefinition Width="153*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="77*"/>
-				<RowDefinition Height="77*"/>
-				<RowDefinition Height="77*"/>
-			</Grid.RowDefinitions>
-			<Image x:Name="A1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
-			<Image x:Name="B1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="1"/>
-			<Image x:Name="C1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="2"/>
-			<Image x:Name="A2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1"/>
-			<Image x:Name="B2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="1"/>
-			<Image x:Name="C2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="2"/>
-			<Image x:Name="A3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2"/>
-			<Image x:Name="B3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="1"/>
-			<Image x:Name="C3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="2"/>
-		</Grid>
-		<Grid Height="120" Margin="10,10,10,0" VerticalAlignment="Top">
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
-			<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-				<Label Content="Type de partie : " VerticalAlignment="Center"/>
-				<RadioButton x:Name="radioJoueur" Content="Joueur VS Joueur" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
-				<RadioButton x:Name="radioSimple" Content="Joueur VS I.A. simple" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
-				<RadioButton x:Name="radioComplexe" Content="Joueur VS I.A. complexe" Margin="10,0" VerticalAlignment="Center" GroupName="typePartie"/>
-			</StackPanel>
-			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-				<Label Content="Joueur 1 :" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-				<TextBox x:Name="textBoxJoueur1" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-				<Label Content="Joueur 2 :" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,0,0,0"/>
-				<TextBox x:Name="textBoxJoueur2" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-				<Button x:Name="boutonJouer" Content="Jouer !" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,20,0,20" Click="BoutonJouer_Click"/>
-			</StackPanel>
-		</Grid>
-		<ListView x:Name="listeActions" Margin="0,135,10,10" HorizontalAlignment="Right" Width="323">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Width="323">
-						<GridViewColumnHeader>Historique des actions</GridViewColumnHeader>
-					</GridViewColumn>
-				</GridView>
-			</ListView.View>
-		</ListView>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grillePlateau" Margin="10,135,338,10" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="153*"/>
+                <ColumnDefinition Width="153*"/>
+                <ColumnDefinition Width="153*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="77*"/>
+                <RowDefinition Height="77*"/>
+                <RowDefinition Height="77*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="A1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
+            <Image x:Name="B1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="1"/>
+            <Image x:Name="C1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="2"/>
+            <Image x:Name="A2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1"/>
+            <Image x:Name="B2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="1"/>
+            <Image x:Name="C2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="2"/>
+            <Image x:Name="A3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2"/>
+            <Image x:Name="B3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="1"/>
+            <Image x:Name="C3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="2"/>
+        </Grid>
+        <Grid Height="120" Margin="10,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="60*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="124,25,123,35" Grid.RowSpan="3" Width="561" VerticalAlignment="Center" RenderTransformOrigin="0.485,0.483">
+                <Label Content="Joueur 1 :" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox x:Name="textBoxJoueur1" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Label Content="Joueur 2 :" HorizontalAlignment="Center" Margin="30,17,0,17" VerticalAlignment="Center"/>
+                <TextBox x:Name="textBoxJoueur2" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button x:Name="boutonJouer" Content="Jouer !" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,20,0,20" Click="BoutonJouer_Click"/>
+            </StackPanel>
+            <CheckBox x:Name="checkBoxIAJ1" Content="IA&#xD;&#xA;" HorizontalAlignment="Left" Margin="184,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="15" RenderTransformOrigin="0.323,0.4"/>
+            <CheckBox x:Name="checkBoxIAJ2" Content="IA&#xA;" HorizontalAlignment="Left" Margin="396,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="15" RenderTransformOrigin="0.323,0.4"/>
+        </Grid>
+        <ListView x:Name="listeActions" Margin="0,135,10,10" HorizontalAlignment="Right" Width="323" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="323">
+                        <GridViewColumnHeader>Historique des actions</GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-	</Grid>
+    </Grid>
 </Window>
