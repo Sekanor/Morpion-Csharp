@@ -63,6 +63,9 @@ namespace Morpion_Csharp
             j1 = textBoxJoueur1.Text;
             j2 = textBoxJoueur2.Text;
 
+            if (EstIA(1)) j1 = "IA_1";
+            if (EstIA(2)) j2 = "IA_2";
+
             // Gestion des erreurs
             if (j1 == "")
             {
@@ -82,13 +85,15 @@ namespace Morpion_Csharp
 
             partieIA = (EstIA(1) || EstIA(2));
 
+            
+
             if (checkBoxIAJ1.IsChecked == true)
             {
-                iaJ1 = new IA_Flexible(morpion.PlateauRestreint, 90);
+                iaJ1 = new IA_Flexible(morpion.PlateauRestreint, Convert.ToInt32(sliderLevelJ1.Value));
             }
             if (checkBoxIAJ2.IsChecked == true)
             {
-                iaJ2 = new IA_Flexible(morpion.PlateauRestreint, 90);
+                iaJ2 = new IA_Flexible(morpion.PlateauRestreint, Convert.ToInt32(sliderLevelJ2.Value));
             }
             
             InitialiserMorpion(j1, j2);
@@ -232,5 +237,34 @@ namespace Morpion_Csharp
 
         }
 
+        /// <summary>
+        /// Se déclenche lorsqu'on clique sur la checkbox IA du joueur 1.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckBoxIAJ1_Click(object sender, RoutedEventArgs e)
+        {
+            sliderLevelJ1.IsEnabled = !sliderLevelJ1.IsEnabled;
+        }
+
+        /// <summary>
+        /// Se déclenche lorsqu'on clique sur la checkbox IA du joueur 2.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckBoxIAJ2_Click(object sender, RoutedEventArgs e)
+        {
+            sliderLevelJ2.IsEnabled = !sliderLevelJ2.IsEnabled;
+        }
+
+        private void SliderLevelJ1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            checkBoxIAJ1.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ1.Value);
+        }
+
+        private void SliderLevelJ2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            checkBoxIAJ2.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ2.Value);
+        }
     }
 }
