@@ -174,6 +174,10 @@ namespace Morpion_Csharp
             }
         }
 
+        /// <summary>
+        /// Effectue un coup sur une case précise du plateau.
+        /// </summary>
+        /// <param name="img">Image représentant la case du plateau sur laquelle on va jouer.</param>
         private void Jouer(Image img)
         {
             listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
@@ -241,6 +245,9 @@ namespace Morpion_Csharp
             } while (coupIA && morpion.EnJeu);
         }
 
+        /// <summary>
+        /// Méthode gérant l'évolution du score des deux joueurs.
+        /// </summary>
         private void GererScore()
         {
             if (morpion.Joueur1.Equals(morpion.Vainqueur))
@@ -279,11 +286,21 @@ namespace Morpion_Csharp
             sliderLevelJ2.IsEnabled = !sliderLevelJ2.IsEnabled;
         }
 
+        /// <summary>
+        /// Se déclenche lorsque le slider représentant le niveau de difficulté de l'IA_1 change de valeur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SliderLevelJ1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             checkBoxIAJ1.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ1.Value);
         }
 
+        /// <summary>
+        /// Se déclenche lorsque le slider représentant le niveau de difficulté de l'IA_2 change de valeur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SliderLevelJ2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             checkBoxIAJ2.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ2.Value);
