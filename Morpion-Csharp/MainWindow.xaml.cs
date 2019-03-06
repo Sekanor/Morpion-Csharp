@@ -113,43 +113,7 @@ namespace Morpion_Csharp
             listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
             MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
-        /// <summary>
-        /// Action effectuée quand une case détecte le clic d'un joueur.
-        /// </summary>
-        private void Img_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Image img = sender as Image;
-
-            // Si une partie de Morpion est en cours
-            if (morpion.EnJeu)
-            {
-                // On vérifie que la case ne soit pas déjà marquée
-                if (plateauIHM.GetCase(img.Name).GetCaseMorpion().Joueur == null)
-                {
-                    Jouer(img);
-
-                    // L'IA joue
-                    CoupIA();
-                }
-
-                // Si la case est déjà marquée, on affiche un message d'erreur
-                else
-                {
-                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-
-            // Si aucune partie n'est lancée, on affiche un message d'erreur
-            else
-            {
-                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
-        }
-
-
+        
         /// <summary>
         /// Vérifie si un des deux joueurs est victorieux, ou s'il y a match nul
         /// </summary>
@@ -183,31 +147,6 @@ namespace Morpion_Csharp
             listeActions.Items.Add(morpion.JoueurCourant.Nom + ": " + img.Name);
             plateauIHM.GetCase(img.Name).Marquer(morpion.JoueurCourant);
             VerifierVictoire();
-        }
-
-        /// <summary>
-        /// Retourne true si le joueur en question est une IA.
-        /// </summary>
-        /// <param name="joueur">ID du joueur en question.</param>
-        /// <returns>True s'il s'agit d'une IA.</returns>
-        private Boolean EstIA(int joueur)
-        {
-            Boolean estIA;
-
-            switch(joueur)
-            {
-                case 1:
-                    estIA = Convert.ToBoolean(checkBoxIAJ1.IsChecked);
-                    break;
-                case 2:
-                    estIA = Convert.ToBoolean(checkBoxIAJ2.IsChecked);
-                    break;
-                default:
-                    estIA = false;
-                    break;
-            }
-
-            return estIA;
         }
 
         /// <summary>
@@ -265,6 +204,66 @@ namespace Morpion_Csharp
             }
         }
 
+        /// <summary>
+        /// Retourne true si le joueur en question est une IA.
+        /// </summary>
+        /// <param name="joueur">ID du joueur en question.</param>
+        /// <returns>True s'il s'agit d'une IA.</returns>
+        private Boolean EstIA(int joueur)
+        {
+            Boolean estIA;
+
+            switch (joueur)
+            {
+                case 1:
+                    estIA = Convert.ToBoolean(checkBoxIAJ1.IsChecked);
+                    break;
+                case 2:
+                    estIA = Convert.ToBoolean(checkBoxIAJ2.IsChecked);
+                    break;
+                default:
+                    estIA = false;
+                    break;
+            }
+
+            return estIA;
+        }
+
+        // Evènements
+
+        /// <summary>
+        /// Action effectuée quand une case détecte le clic d'un joueur.
+        /// </summary>
+        private void Img_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Image img = sender as Image;
+
+            // Si une partie de Morpion est en cours
+            if (morpion.EnJeu)
+            {
+                // On vérifie que la case ne soit pas déjà marquée
+                if (plateauIHM.GetCase(img.Name).GetCaseMorpion().Joueur == null)
+                {
+                    Jouer(img);
+
+                    // L'IA joue
+                    CoupIA();
+                }
+
+                // Si la case est déjà marquée, on affiche un message d'erreur
+                else
+                {
+                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+
+            // Si aucune partie n'est lancée, on affiche un message d'erreur
+            else
+            {
+                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+        }
 
         /// <summary>
         /// Se déclenche lorsqu'on clique sur la checkbox IA du joueur 1.
