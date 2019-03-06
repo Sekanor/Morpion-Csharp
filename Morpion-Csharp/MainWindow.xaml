@@ -54,7 +54,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" Width="205" Orientation="Horizontal" Height="77" VerticalAlignment="Center">
-                    <StackPanel HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="70">
+                    <StackPanel HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="65">
                         <Label Content="Joueur 2 :" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top"/>
                         <Label x:Name="scoreJ2" Content="0&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="0.184,-0.091" Width="51" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="38"/>
                     </StackPanel>

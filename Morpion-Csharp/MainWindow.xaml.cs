@@ -31,11 +31,16 @@ namespace Morpion_Csharp
         private IA iaJ2;
         private Boolean partieIA;
 
+        private DataContainer dataContainer;
+
         public MainWindow()
         {
             InitializeComponent();
             morpion = new Morpion();
             partieIA = false;
+
+            this.dataContainer = new DataContainer();
+            DataContext = this.dataContainer;
 
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
 
