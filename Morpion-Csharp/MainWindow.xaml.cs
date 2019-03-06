@@ -31,6 +31,8 @@ namespace Morpion_Csharp
         private IA iaJ2;
         private Boolean partieIA;
 
+        public int ActionsWidth { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -303,6 +305,11 @@ namespace Morpion_Csharp
         private void SliderLevelJ2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             checkBoxIAJ2.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ2.Value);
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ActionsWidth = 100;
         }
     }
 }

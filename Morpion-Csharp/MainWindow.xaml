@@ -5,43 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
-        Title="Morpion" Height="640" Width="836" Icon="Images/icon.png">
+        Title="Morpion" Height="640" Width="836" Icon="Images/icon.png" MinWidth="600" MinHeight="300" SizeChanged="Window_SizeChanged">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="371*"/>
+            <RowDefinition Height="239*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grillePlateau" Margin="10,135,338,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="153*"/>
-                <ColumnDefinition Width="153*"/>
-                <ColumnDefinition Width="153*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="77*"/>
-                <RowDefinition Height="77*"/>
-                <RowDefinition Height="77*"/>
-            </Grid.RowDefinitions>
-            <Image x:Name="A1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
-            <Image x:Name="B1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="1"/>
-            <Image x:Name="C1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="2"/>
-            <Image x:Name="A2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1"/>
-            <Image x:Name="B2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="1"/>
-            <Image x:Name="C2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="2"/>
-            <Image x:Name="A3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2"/>
-            <Image x:Name="B3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="1"/>
-            <Image x:Name="C3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="2"/>
-        </Grid>
-        <ListView x:Name="listeActions" Margin="0,135,10,10" HorizontalAlignment="Right" Width="323">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="323">
-                        <GridViewColumnHeader>Historique des actions</GridViewColumnHeader>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StackPanel HorizontalAlignment="Left" Height="120" Margin="0,0,0,0" VerticalAlignment="Top" Width="828">
-            <StackPanel HorizontalAlignment="Center" Height="120" Margin="0" VerticalAlignment="Center" Width="584" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" Height="120" Margin="0,0,0,0" VerticalAlignment="Top" Width="828">
+            <StackPanel HorizontalAlignment="Center" Height="120" Margin="122,0" VerticalAlignment="Center" Width="536" Orientation="Horizontal">
                 <StackPanel HorizontalAlignment="Center" Height="71" VerticalAlignment="Center" Width="193" Orientation="Horizontal">
                     <StackPanel Width="64" Height="63" VerticalAlignment="Top">
                         <Label Content="Joueur 1 :" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64" Height="23"/>
@@ -66,6 +40,38 @@
                 </StackPanel>
                 <Button x:Name="boutonJouer" Content="Jouer !" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Click="BoutonJouer_Click" Height="23" RenderTransformOrigin="0.511,-0.696"/>
             </StackPanel>
+        </StackPanel>
+        <StackPanel Height="464" Margin="10,135,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Orientation="Horizontal">
+            <Grid x:Name="grillePlateau" MinWidth="480" Width="480" HorizontalAlignment="Left" Height="464">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="153*"/>
+                    <ColumnDefinition Width="153*"/>
+                    <ColumnDefinition Width="153*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="77*"/>
+                    <RowDefinition Height="77*"/>
+                    <RowDefinition Height="77*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="A1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown"/>
+                <Image x:Name="B1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="1"/>
+                <Image x:Name="C1" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Column="2"/>
+                <Image x:Name="A2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1"/>
+                <Image x:Name="B2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="1"/>
+                <Image x:Name="C2" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="1" Grid.Column="2"/>
+                <Image x:Name="A3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2"/>
+                <Image x:Name="B3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="1"/>
+                <Image x:Name="C3" Margin="5" Source="Images/j0.png" MouseDown="Img_MouseDown" Grid.Row="2" Grid.Column="2"/>
+            </Grid>
+            <ListView x:Name="listeActions" HorizontalAlignment="Left" Width="{Binding ActionsWidth}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="323">
+                            <GridViewColumnHeader Width="322" HorizontalAlignment="Left" MinHeight="0" MinWidth="330" MaxWidth="330" Content="Historique des actions"/>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
 
     </Grid>
