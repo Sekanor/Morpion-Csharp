@@ -35,14 +35,16 @@ namespace Morpion_Csharp
 
         public MainWindow()
         {
+            this.dataContainer = new DataContainer();
+            DataContext = this.dataContainer;
+
             InitializeComponent();
             morpion = new Morpion();
             partieIA = false;
 
-            this.dataContainer = new DataContainer();
-            DataContext = this.dataContainer;
-
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
+
+            historique.Content = this.dataContainer.HistoriqueActions;
 
             // Création des cases de l'IHM
             this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
@@ -68,23 +70,23 @@ namespace Morpion_Csharp
             j1 = textBoxJoueur1.Text;
             j2 = textBoxJoueur2.Text;
 
-            if (EstIA(1)) j1 = "IA_1";
-            if (EstIA(2)) j2 = "IA_2";
+            if (EstIA(1)) j1 = this.dataContainer.IA_1;
+            if (EstIA(2)) j2 = this.dataContainer.IA_2;
 
             // Gestion des erreurs
             if (j1 == "")
             {
-                MessageBox.Show("Veuillez indiquer un nom pour le Joueur 1.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this.dataContainer.ErreurJ1Nom, this.dataContainer.TitreMessageErreur, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (j2 == "")
             {
-                MessageBox.Show("Veuillez indiquer un nom pour le Joueur 2.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this.dataContainer.ErreurJ2Nom, this.dataContainer.TitreMessageErreur, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (j1 == j2)
             {
-                MessageBox.Show("Les deux joueurs ne peuvent pas avoir un nom identique.", "Erreur de saisie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this.dataContainer.ErreurNomIdentique, this.dataContainer.TitreMessageErreur, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -115,8 +117,8 @@ namespace Morpion_Csharp
             morpion.Initialisation(J1, J2);
             plateauIHM.Nettoyer(); // Nettoyage du plateau
             listeActions.Items.Clear(); // Nettoyage de l'historique des actions
-            listeActions.Items.Add("Début de la partie: " + morpion.Joueur1.Nom + " contre " + morpion.Joueur2.Nom);
-            MessageBox.Show("C'est parti ! " + morpion.Joueur1.Nom + " commence.", "Partie lancée", MessageBoxButton.OK, MessageBoxImage.Information);
+            listeActions.Items.Add(this.dataContainer.DebutPartie + morpion.Joueur1.Nom + this.dataContainer.Contre + morpion.Joueur2.Nom);
+            MessageBox.Show(this.dataContainer.Depart + morpion.Joueur1.Nom + this.dataContainer.Commence, this.dataContainer.TitrePartieLancee, MessageBoxButton.OK, MessageBoxImage.Information);
         }
         
         /// <summary>
@@ -126,8 +128,8 @@ namespace Morpion_Csharp
         {
             if (morpion.Vainqueur != null)
             {
-                listeActions.Items.Add(morpion.Vainqueur.Nom + " remporte la partie !");
-                MessageBox.Show(morpion.Vainqueur.Nom + " remporte la partie !", "Nous avons un vainqueur", MessageBoxButton.OK, MessageBoxImage.Information);
+                listeActions.Items.Add(morpion.Vainqueur.Nom + this.dataContainer.RemportePartie);
+                MessageBox.Show(morpion.Vainqueur.Nom + this.dataContainer.RemportePartie, this.dataContainer.PartieGagneeTitre, MessageBoxButton.OK, MessageBoxImage.Information);
                 plateauIHM.Nettoyer();
 
                 GererScore();
@@ -136,8 +138,8 @@ namespace Morpion_Csharp
             // Match nul
             else if (morpion.PlateauJeu.VerifierPlateauRempli())
             {
-                listeActions.Items.Add("Match nul !");
-                MessageBox.Show("Match nul", "Aucun joueur ne remporte la partie.", MessageBoxButton.OK, MessageBoxImage.Information);
+                listeActions.Items.Add(this.dataContainer.MatchNulItem);
+                MessageBox.Show(this.dataContainer.MatchNulTexte, this.dataContainer.MatchNulTitre, MessageBoxButton.OK, MessageBoxImage.Information);
                 plateauIHM.Nettoyer();
                 GererScore();
             }
@@ -258,14 +260,14 @@ namespace Morpion_Csharp
                 // Si la case est déjà marquée, on affiche un message d'erreur
                 else
                 {
-                    MessageBox.Show("Cette case est déjà marquée.", "Impossible de cliquer ici", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(this.dataContainer.CaseMarqueeTexte, this.dataContainer.CaseMarqueeTitre, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
             // Si aucune partie n'est lancée, on affiche un message d'erreur
             else
             {
-                MessageBox.Show("Veuillez lancer une partie en appuyant sur le bouton Jouer.", "Aucune partie lancée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this.dataContainer.VeuillezLancerPartie, this.dataContainer.VeuillezLancerPartieTitre, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -297,7 +299,7 @@ namespace Morpion_Csharp
         /// <param name="e"></param>
         private void SliderLevelJ1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            checkBoxIAJ1.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ1.Value);
+            checkBoxIAJ1.Content = this.dataContainer.TexteIA + Convert.ToInt32(sliderLevelJ1.Value);
         }
 
         /// <summary>
@@ -307,7 +309,8 @@ namespace Morpion_Csharp
         /// <param name="e"></param>
         private void SliderLevelJ2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            checkBoxIAJ2.Content = "IA niveau " + Convert.ToInt32(sliderLevelJ2.Value);
+            checkBoxIAJ2.Content = this.dataContainer.TexteIA + Convert.ToInt32(sliderLevelJ2.Value);
         }
+
     }
 }

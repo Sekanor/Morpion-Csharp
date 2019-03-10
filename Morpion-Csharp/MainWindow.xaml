@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
-        Title="Morpion" Height="640" Width="836" MinHeight="500" MinWidth="650" Icon="Images/icon.png">
+        Title="{Binding Titre}" Height="640" Width="836" MinHeight="500" MinWidth="650" Icon="Images/icon.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -35,7 +35,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="323">
-                        <GridViewColumnHeader>Historique des actions</GridViewColumnHeader>
+                        <GridViewColumnHeader x:Name="historique">Historique des actions</GridViewColumnHeader>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
@@ -44,7 +44,7 @@
             <StackPanel Height="120" Margin="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center" Height="71" VerticalAlignment="Center" Width="193" Orientation="Horizontal">
                     <StackPanel Width="64" Height="63" VerticalAlignment="Top">
-                        <Label Content="Joueur 1 :" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64" Height="23"/>
+                        <Label Content="{Binding J1_Nom}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64" Height="23"/>
                         <Label x:Name="scoreJ1" Content="0" HorizontalAlignment="Left" RenderTransformOrigin="0.184,-0.091" Width="64" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="39" VerticalAlignment="Top" Margin="-2,0,0,0"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="130">
@@ -55,7 +55,7 @@
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" Width="205" Orientation="Horizontal" Height="77" VerticalAlignment="Center">
                     <StackPanel HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="65">
-                        <Label Content="Joueur 2 :" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top"/>
+                        <Label Content="{Binding J2_Nom}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top"/>
                         <Label x:Name="scoreJ2" Content="0&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="0.184,-0.091" Width="51" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="38"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="144">
@@ -64,7 +64,7 @@
                         <Slider x:Name="sliderLevelJ2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100" Value="50" IsEnabled="False" TickFrequency="1" ValueChanged="SliderLevelJ2_ValueChanged" Margin="0"/>
                     </StackPanel>
                 </StackPanel>
-                <Button x:Name="boutonJouer" Content="Jouer !" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Click="BoutonJouer_Click" Height="23" RenderTransformOrigin="0.511,-0.696"/>
+                <Button x:Name="boutonJouer" Content="{Binding Bouton_Jouer}" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Click="BoutonJouer_Click" Height="23" RenderTransformOrigin="0.511,-0.696"/>
             </StackPanel>
         </StackPanel>
 
