@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
         Title="{Binding Titre}" Height="640" Width="836" MinHeight="500" MinWidth="650" Icon="Images/icon.png">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -67,6 +68,14 @@
                 <Button x:Name="boutonJouer" Content="{Binding Bouton_Jouer}" Width="131" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Click="BoutonJouer_Click" Height="23" RenderTransformOrigin="0.511,-0.696"/>
             </StackPanel>
         </StackPanel>
-
+        <DockPanel Height="20" Margin="0,0,0,0" VerticalAlignment="Top">
+            <Menu DockPanel.Dock="Top" Height="20" Background="White">
+                <MenuItem Header="{Binding Menu_Langage}">
+                    <MenuItem x:Name="Francais" Header="{Binding Menu_Francais}" Click="MenuItem_Francais" />
+                    <MenuItem x:Name="Anglais" Header="{Binding Menu_Anglais}" Click="MenuItem_Anglais" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
     </Grid>
 </Window>

@@ -44,7 +44,7 @@ namespace Morpion_Csharp
 
             plateauIHM = new PlateauIHM(morpion.PlateauJeu);
 
-            historique.Content = this.dataContainer.HistoriqueActions;
+            this.ActualiserDonnees();
 
             // Création des cases de l'IHM
             this.plateauIHM.AjouterCaseIHM(new CaseIHM(morpion.PlateauJeu.GetCase(0, 0), A1));
@@ -312,5 +312,36 @@ namespace Morpion_Csharp
             checkBoxIAJ2.Content = this.dataContainer.TexteIA + Convert.ToInt32(sliderLevelJ2.Value);
         }
 
+        /// <summary>
+        /// Change le langage du jeu en français.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Francais(object sender, RoutedEventArgs e)
+        {
+            this.dataContainer.Francais();
+            this.ActualiserDonnees();
+        }
+
+        /// <summary>
+        /// Change le langage du jeu en anglais.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Anglais(object sender, RoutedEventArgs e)
+        {
+            this.dataContainer.Anglais();
+            this.ActualiserDonnees();
+        }
+
+        /// <summary>
+        /// Actualise tous les labels du jeu.
+        /// </summary>
+        private void ActualiserDonnees()
+        {
+            DataContext = null;
+            DataContext = this.dataContainer;
+            historique.Content = this.dataContainer.HistoriqueActions;
+        }
     }
 }

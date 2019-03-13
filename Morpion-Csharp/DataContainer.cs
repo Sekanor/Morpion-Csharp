@@ -42,6 +42,10 @@ namespace Morpion_Csharp
         public string IA_1 { get; set; }
         public string IA_2 { get; set; }
 
+        public string Menu_Langage { get; set; }
+        public string Menu_Anglais { get; set; }
+        public string Menu_Francais { get; set; }
+
 
         public DataContainer()
         {
@@ -81,6 +85,10 @@ namespace Morpion_Csharp
 
             this.IA_1 = "IA_1";
             this.IA_2 = "IA_2";
+
+            this.Menu_Langage = "Langage";
+            this.Menu_Anglais = "Anglais";
+            this.Menu_Francais = "Français";
         }
 
         public void Anglais()
@@ -116,6 +124,10 @@ namespace Morpion_Csharp
 
             this.IA_1 = "AI_1";
             this.IA_2 = "AI_2";
+
+            this.Menu_Langage = "Language";
+            this.Menu_Anglais = "English";
+            this.Menu_Francais = "French";
         }
 
     }
