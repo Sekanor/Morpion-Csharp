@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Morpion_Csharp"
         mc:Ignorable="d"
         Title="{Binding Titre}" Height="640" Width="836" MinHeight="500" MinWidth="650" Icon="Images/icon.png">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -51,17 +51,17 @@
                     <StackPanel HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="130">
                         <TextBox x:Name="textBoxJoueur1" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" MaxHeight="16" Margin="0,5,0,0"/>
                         <CheckBox x:Name="checkBoxIAJ1" Content="IA niveau 50" HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" RenderTransformOrigin="0.753,0.8" Click="CheckBoxIAJ1_Click" Margin="0,5,0,0"/>
-                        <Slider x:Name="sliderLevelJ1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100" Value="50" IsEnabled="False" TickFrequency="1" ValueChanged="SliderLevelJ1_ValueChanged"/>
+                        <Slider x:Name="sliderLevelJ1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100" Value="50" IsEnabled="False" TickFrequency="1" ValueChanged="SliderLevelJ1_ValueChanged"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Left" Width="205" Orientation="Horizontal" Height="77" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Left" Width="205" Orientation="Horizontal" Height="72" VerticalAlignment="Center" Margin="0,24">
                     <StackPanel HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="65">
                         <Label Content="{Binding J2_Nom}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top"/>
                         <Label x:Name="scoreJ2" Content="0&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="0.184,-0.091" Width="51" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="38"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" Width="144">
-                        <TextBox x:Name="textBoxJoueur2" TextWrapping="Wrap" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="18" Margin="0,5,0,0"/>
-                        <CheckBox x:Name="checkBoxIAJ2" Content="IA niveau 50" HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" RenderTransformOrigin="0.323,0.4" Click="CheckBoxIAJ2_Click" Margin="0,5,0,0"/>
+                    <StackPanel HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="130">
+                        <TextBox x:Name="textBoxJoueur2" TextWrapping="Wrap" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" MaxHeight="16" Margin="0,5,0,0"/>
+                        <CheckBox x:Name="checkBoxIAJ2" Content="IA niveau 50" HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" RenderTransformOrigin="0.753,0.8" Click="CheckBoxIAJ2_Click" Margin="0,5,0,0"/>
                         <Slider x:Name="sliderLevelJ2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Minimum="0" Maximum="100" Value="50" IsEnabled="False" TickFrequency="1" ValueChanged="SliderLevelJ2_ValueChanged" Margin="0"/>
                     </StackPanel>
                 </StackPanel>
