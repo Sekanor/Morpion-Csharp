@@ -342,6 +342,7 @@ namespace Morpion_Csharp
             DataContext = null;
             DataContext = this.dataContainer;
             historique.Content = this.dataContainer.HistoriqueActions;
+            checkBoxIAJ1.Content = this.dataContainer.TexteIA + Convert.ToInt32(sliderLevelJ1.Value);
         }
     }
 }
